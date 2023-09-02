@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd.h                                         :+:      :+:    :+:   */
+/*   foggy_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 17:49:37 by lperroti          #+#    #+#             */
-/*   Updated: 2023/08/22 17:50:08 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/02 08:16:03 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/02 08:43:56 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_CMD_H
-# define EXEC_CMD_H
+#include "minishell.h"
 
-typedef struct s_fork_cmd_params {
-	char	*cmd_name;
-	char	**cmd_args;
-	char	**envp;
-	int		close_fd;
-	int		fd_in;
-	int		fd_out;
-}	t_fork_cmd_params;
+void	*input_to_fggtr(char *line)
+{
+	char	**words;
+	size_t	words_index;
 
-#endif
+	line[lp_strlen(line) - 1] = 0;
+	words = lp_pool_split(line, " \t\r\v\f");
+	words_index = 0;
+	while (words[words_index])
+	{
+		lp_printf("%s\n", words[words_index]);
+		words_index++;
+	}
+	while (words_index)
+	{
+		words_index--;
+		free(words[words_index]);
+	}
+	free(words);
+	return (NULL);
+}
