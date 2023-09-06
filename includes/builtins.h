@@ -6,13 +6,13 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 05:03:45 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/02 05:06:52 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:09:17 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-int	echo(int argc, char **argv);
+int	echo(char *str);
 
 #endif
