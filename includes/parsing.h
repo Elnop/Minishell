@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   foggy_tree.c                                       :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 08:16:03 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/06 19:16:49 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/06 19:23:41 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/06 19:24:25 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-void	*input_to_fggtr(char *line)
-{
-	line_to_array(line);
-}
+bool	copy_str(void *pelem, void *dest);
+void	destroy_str(void *pelem);
+
+#endif

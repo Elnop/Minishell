@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   foggy_tree.c                                       :+:      :+:    :+:   */
+/*   array_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 08:16:03 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/06 19:16:49 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/06 19:18:44 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/06 19:22:00 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-void	*input_to_fggtr(char *line)
+bool	copy_str(void *pelem, void *dest)
 {
-	line_to_array(line);
+	*(char **)dest = lp_strdup(*(char **)pelem);
+	if (!dest)
+		return (false);
+	return (true);
+}
+
+void	destroy_str(void *pelem)
+{
+	free(*(char **)pelem);
 }

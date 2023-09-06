@@ -17,7 +17,7 @@ LIBLP_DIR = $(LIBS_DIR)/liblp_c
 LIBLP = $(LIBLP_DIR)/liblp_c.a
 
 $(NAME): $(LIBLP) $(OBJS_DIR) $(OBJS)
-	$(CC) $(OBJS) $(LIBLP) -o $(NAME)
+	$(CC) $(OBJS) $(LIBLP) -o $(NAME) -lreadline
 
 $(LIBLP):
 	make -C ${LIBLP_DIR}
