@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/06 19:30:50 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/07 01:18:21 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "foggy_tree.h"
 # include "parsing.h"
 
-# define SPACERS " /t/r/v/f"
+# define SPACERS " \t\r\v\f"
 
 int	start(void);
 
