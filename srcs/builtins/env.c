@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 05:03:45 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/07 21:11:16 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/07 20:59:06 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/07 21:20:48 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#include "../../includes/minishell.h"
 
-# include "minishell.h"
+void	builtin_env(t_array	env_array)
+{
+	size_t	i;
 
-int		echo(char *str);
-void	builtin_env(t_array	env_array);
-
-#endif
+	i = 0;
+	while (i < array_size(env_array))
+		lp_putendl_fd(((char **)env_array)[i++], 1);
+}

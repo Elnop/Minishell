@@ -1,4 +1,4 @@
-BUILTINS_FILES = echo
+BUILTINS_FILES = echo env
 
 BUILTINS_SRCS_DIR = builtins
 
