@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:17:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/07 20:16:27 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:54:28 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_array	line_to_array(char *line)
 		{
 			if (!push_next_word(&words, &line))
 			{
-				lp_putendl_fd((char *)"error", 2);
 				array_free(words);
 				return (NULL);
 			}

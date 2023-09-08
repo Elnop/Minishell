@@ -6,11 +6,11 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 04:55:13 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/02 08:48:06 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:30:59 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 int	echo(char *str)
 {

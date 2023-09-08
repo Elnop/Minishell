@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/07 21:29:25 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:36:15 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,19 @@ typedef struct s_app
 	t_array	env;
 }	t_app;
 
-# include "builtins.h"
-# include "foggy_tree.h"
-# include "parsing.h"
+int		start(t_app *p_app);
 
-int	start(t_app *p_app);
+// ---- BUILTINS
+int		builtin_echo(char *str);
+void	builtin_env(t_array	env_array);
 
+// ---- PARSING
+bool	copy_str(void *pelem, void *dest);
+void	destroy_str(void *pelem);
+t_array	line_to_array(char *line);
+char	*get_next_word(char **p_line);
+
+// ---- FOGGY TREE
+void	*input_to_foggy_tree(char *line, t_app *p_app);
 
 #endif
