@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/08 16:36:15 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/10 02:33:51 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@
 # include "../libs/liblp_c/liblp.h"
 
 # define SPACERS " \t\r\v\f"
+
+typedef char	*(*t_lexchar_function)(char **p_line);
+
+typedef struct s_lexing_option
+{
+	char				character;
+	t_lexchar_function	run;
+}	t_lexing_option;
 
 typedef struct s_app
 {
