@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 17:19:21 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/10 20:55:40 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/11 19:34:21 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,6 @@ static char	*get_word(char **p_line)
 	word = lp_substr(*p_line, 0, i);
 	*p_line += i;
 	return (word);
-}
-
-static char	*expand(char *str, char next_char)
-{
-	t_array	tmp_buff;
-	char	*new_str;
-
-	if (!str)
-		return (NULL);
-	tmp_buff = array_new(lp_strlen(str), sizeof(char), NULL, NULL);
-	if (!tmp_buff || !array_pushback_tab(&tmp_buff, str, lp_strlen(str) + 1))
-		return (NULL);
-	if (next_char && ((char *)tmp_buff)[array_size(tmp_buff) - 2] == '$')
-		array_remove(tmp_buff, array_size(tmp_buff) - 2);
-	new_str = lp_strdup(tmp_buff);
-	free(str);
-	array_free(tmp_buff);
-	return (new_str);
 }
 
 char	*fusion_strs(char *s1, char *s2)

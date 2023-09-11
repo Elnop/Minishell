@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/10 02:33:51 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:10:07 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # include "../libs/liblp_c/liblp.h"
 
-# define SPACERS " \t\r\v\f"
+# define SPACERS " \a\t\r\v\f\n\b"
 
 typedef char	*(*t_lexchar_function)(char **p_line);
 
@@ -51,6 +51,7 @@ bool	copy_str(void *pelem, void *dest);
 void	destroy_str(void *pelem);
 t_array	line_to_array(char *line);
 char	*get_next_word(char **p_line);
+char	*expand(char *str, char next_char);
 
 // ---- FOGGY TREE
 void	*input_to_foggy_tree(char *line, t_app *p_app);
