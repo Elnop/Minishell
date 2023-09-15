@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 17:19:21 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/11 19:34:21 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/15 04:13:58 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*fusion_strs(char *s1, char *s2)
 	return (fusion);
 }
 
-char	*get_next_word(char **p_line)
+char	*get_next_word(t_array env, char **p_line)
 {
 	char	*word;
 	char	*sub_word;
@@ -66,12 +66,12 @@ char	*get_next_word(char **p_line)
 		else if (**p_line == '"')
 		{
 			sub_word = get_quoted(p_line, '\"');
-			sub_word = expand(sub_word, **p_line);
+			sub_word = expand(env, sub_word);
 		}
 		else
 		{
 			sub_word = get_word(p_line);
-			sub_word = expand(sub_word, **p_line);
+			sub_word = expand(env, sub_word);
 		}
 		if (!sub_word)
 			return (NULL);

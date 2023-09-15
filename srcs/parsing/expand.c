@@ -6,40 +6,89 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:34:08 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/11 20:15:53 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/15 04:44:05 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_array	str_to_buff(char *str)
+static bool	is_end_of_var(char *str)
 {
-	t_array	buff;
-
-	if (!str)
-		return (NULL);
-	buff = array_new(lp_strlen(str), sizeof(char), NULL, NULL);
-	if (!buff || !array_pushback_tab(&buff, str, lp_strlen(str) + 1))
-		return (NULL);
-	free(str);
-	return (buff);
+	return (!str || !*str || *str == '$'
+		|| !lp_strncmp(str, "&&", 2)
+		|| !lp_strncmp(str, "||", 2)
+		|| !lp_strncmp(str, "|", 1)
+		|| !lp_strncmp(str, "<", 1)
+		|| !lp_strncmp(str, ">", 1)
+		|| !lp_strncmp(str, "<<", 2)
+		|| !lp_strncmp(str, ">>", 2));
 }
 
-static void	remove_end_dollar(t_array buff, char next_char)
+static char	*get_var_name(char *str)
 {
-	if (next_char && ((char *)buff)[array_size(buff) - 2] == '$')
-		array_remove(buff, array_size(buff) - 2);
+	char	i;
+
+	i = 0;
+	while (!is_end_of_var(str + i))
+		i++;
+	return (lp_substr(str, 0, i));
 }
 
-char	*expand(char *str, char next_char)
+static char	*get_env_var_value(char **env, char *var_name)
 {
-	t_array	buff;
+	if (!var_name || !*var_name)
+		return (NULL);
+	while (*env)
+	{
+		if (!lp_strncmp(*env, var_name, lp_strlen(var_name)))
+			return (
+				lp_substr(*env, lp_strlen(var_name) + 1,
+					lp_strlen(*env) - lp_strlen(var_name) - 1)
+			);
+		env++;
+	}
+	return (NULL);
+}
+
+static bool	replace_var(t_array env, char **p_str, t_array *p_buff)
+{
+	char	*var_name;
+	char	*var_value;
+	size_t	i;
+
+	if (!**p_str)
+		return (true);
+	(*p_str)++;
+	var_name = get_var_name(*p_str);
+	*p_str += lp_strlen(var_name);
+	var_value = get_env_var_value(env, var_name);
+	free(var_name);
+	i = 0;
+	while (var_value && var_value[i])
+		if (!array_pushback(p_buff, var_value + i++))
+			return (false);
+	free(var_value);
+	return (true);
+}
+
+char	*expand(t_array env, char *str)
+{
 	char	*new_str;
+	t_array	buff;
 
-	buff = str_to_buff(str);
+	buff = array_new(10, sizeof(char), NULL, NULL);
 	if (!buff)
 		return (NULL);
-	remove_end_dollar(buff, next_char);
+	while (*str)
+	{
+		while (*str && *str != '$')
+			if (!array_pushback(&buff, str++))
+				return (NULL);
+		if (!replace_var(env, &str, &buff))
+			return (NULL);
+	}
+	if (!array_pushback(&buff, "\0"))
+		return (NULL);
 	new_str = lp_strdup(buff);
 	array_free(buff);
 	return (new_str);

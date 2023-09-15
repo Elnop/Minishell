@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:17:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/10 03:45:35 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:40:33 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	skip_white_spaces(char **p_line)
 		(*p_line)++;
 }
 
-static bool	push_next_word(t_array *p_words_array, char **p_line)
+static bool	push_next_word(t_array env, t_array *p_words_array, char **p_line)
 {
 	char	*word;
 
-	word = get_next_word(p_line);
+	word = get_next_word(env, p_line);
 	if (!word)
 		return (false);
 	if (!array_pushback(p_words_array, &word))
@@ -31,7 +31,7 @@ static bool	push_next_word(t_array *p_words_array, char **p_line)
 	return (true);
 }
 
-t_array	line_to_array(char *line)
+t_array	line_to_array(t_array env, char *line)
 {
 	t_array	words;
 
@@ -43,7 +43,7 @@ t_array	line_to_array(char *line)
 		skip_white_spaces(&line);
 		if (!*line)
 			return (words);
-		if (!push_next_word(&words, &line))
+		if (!push_next_word(env, &words, &line))
 			return (array_free(words), NULL);
 
 	}
