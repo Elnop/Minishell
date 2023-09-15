@@ -1,4 +1,4 @@
-PARSING_FILES = line_to_array array_handlers get_next_word expand
+PARSING_FILES = line_to_array array_handlers get_next_word expand utils
 
 PARSING_SRCS_DIR = parsing
 

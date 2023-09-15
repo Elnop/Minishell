@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/15 04:14:11 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:03:46 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	builtin_env(t_array	env_array);
 // ---- PARSING
 bool	copy_str(void *pelem, void *dest);
 void	destroy_str(void *pelem);
+bool	is_operator(char	*str);
 t_array	line_to_array(t_array env, char *line);
 char	*get_next_word(t_array env, char **p_line);
 char	*expand(t_array env, char *str);

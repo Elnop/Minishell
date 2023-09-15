@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:34:08 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/15 04:44:05 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:06:43 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,7 @@
 
 static bool	is_end_of_var(char *str)
 {
-	return (!str || !*str || *str == '$'
-		|| !lp_strncmp(str, "&&", 2)
-		|| !lp_strncmp(str, "||", 2)
-		|| !lp_strncmp(str, "|", 1)
-		|| !lp_strncmp(str, "<", 1)
-		|| !lp_strncmp(str, ">", 1)
-		|| !lp_strncmp(str, "<<", 2)
-		|| !lp_strncmp(str, ">>", 2));
+	return (!str || !*str || *str == '$' || is_operator(str));
 }
 
 static char	*get_var_name(char *str)
