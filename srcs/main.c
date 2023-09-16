@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:12:08 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/07 21:22:58 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/16 02:52:25 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_array	strtab_to_array(char **str_tab)
 		array_pushback(&my_env, str_tab);
 		str_tab++;
 	}
+	array_pushback(&my_env, str_tab);
 	return (my_env);
 }
 

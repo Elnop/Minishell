@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:17:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/11 20:40:33 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/16 02:39:56 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	skip_white_spaces(char **p_line)
 		(*p_line)++;
 }
 
-static bool	push_next_word(t_array env, t_array *p_words_array, char **p_line)
+static bool	push_next_word(char **env, t_array *p_words_array, char **p_line)
 {
 	char	*word;
 
@@ -31,7 +31,7 @@ static bool	push_next_word(t_array env, t_array *p_words_array, char **p_line)
 	return (true);
 }
 
-t_array	line_to_array(t_array env, char *line)
+t_array	line_to_array(char **env, char *line)
 {
 	t_array	words;
 

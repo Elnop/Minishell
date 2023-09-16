@@ -1,6 +1,8 @@
 include mks/common_vars.mk
 include mks/builtins.mk
 include mks/parsing.mk
+include mks/expands.mk
+include mks/utils.mk
 
 NAME = minishell
 
@@ -9,7 +11,7 @@ FILES = main start foggy_tree
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES))) \
-	$(BUILTINS_OBJS) $(PARSING_OBJS)
+	$(BUILTINS_OBJS) $(PARSING_OBJS) $(EXPANDS_OBJS) $(UTILS_OBJS)
 
 LIBS_DIR = libs
 

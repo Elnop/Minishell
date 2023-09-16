@@ -1,6 +1,6 @@
-PARSING_FILES = line_to_array array_handlers get_next_word expand utils
+PARSING_FILES = line_to_array get_next_word
 
-PARSING_SRCS_DIR = parsing
+PARSING_SRCS_DIR = tokenify
 
 PARSING_SRCS = $(addprefix $(SRCS_DIR)/$(PARSING_SRCS_DIR)/, $(addsuffix .c, $(PARSING_FILES)))
 

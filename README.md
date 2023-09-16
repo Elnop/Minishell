@@ -6,12 +6,34 @@
 
 ### Expand
 
-- 2.6 Word Expansions
+<details>
+<summary> Word Expansions </summary>
 
->The '\$' character is used to introduce parameter expansion, command substitution, or arithmetic evaluation. If an unquoted '\$' is followed by a character that is not one of the following:
-> - A numeric character
-> - The name of one of the special parameters (see Special Parameters)
-> - A valid first character of a variable name
-> - A \<left-curly-bracket> ( '\{' )
-> - A \<left-parenthesis>
->the result is unspecified.
+#### Unspecified results
+
+The '\$' character is used to introduce parameter expansion, command substitution, or arithmetic evaluation. If an unquoted '\$' is followed by a character that is not one of the following:
+* A numeric character
+* The name of one of the special parameters (see Special Parameters)
+* A valid first character of a variable name
+* A \<left-curly-bracket\> ( '\{' )
+* A \<left-parenthesis\>
+
+the result is unspecified.
+</details>
+
+<details>
+<summary> Errors </summary>
+
+ambiguous redirect
+
+```bash
+export a="file1 file2"
+ls > $a
+bash: $a: ambiguous redirect
+```
+```bash
+export a=""
+< $a cat
+bash: $a: ambiguous redirect
+```
+</details>

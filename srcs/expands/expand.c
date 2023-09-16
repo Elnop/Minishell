@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:34:08 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/15 20:06:43 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/16 02:58:30 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*get_var_name(char *str)
 
 static char	*get_env_var_value(char **env, char *var_name)
 {
-	if (!var_name || !*var_name)
+	if (!var_name || !lp_strlen(var_name))
 		return (NULL);
 	while (*env)
 	{
@@ -43,7 +43,7 @@ static char	*get_env_var_value(char **env, char *var_name)
 	return (NULL);
 }
 
-static bool	replace_var(t_array env, char **p_str, t_array *p_buff)
+static bool	replace_var(char **env, char **p_str, t_array *p_buff)
 {
 	char	*var_name;
 	char	*var_value;
@@ -64,7 +64,7 @@ static bool	replace_var(t_array env, char **p_str, t_array *p_buff)
 	return (true);
 }
 
-char	*expand(t_array env, char *str)
+char	*expand(char **env, char *str)
 {
 	char	*new_str;
 	t_array	buff;

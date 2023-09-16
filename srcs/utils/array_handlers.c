@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:18:44 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/07 00:54:37 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/16 02:56:01 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 bool	copy_str(void *pelem, void *dest)
 {
-	*(char **)dest = lp_strdup(*(char **)pelem);
-	if (!dest)
-		return (false);
+	if (!*(char **)pelem)
+		*(char **)dest = NULL;
+	else
+		*(char **)dest = lp_strdup(*(char **)pelem);
 	return (true);
 }
 
