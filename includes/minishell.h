@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/16 02:35:34 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/16 05:53:15 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	builtin_env(char **env_array);
 // ---- PARSING
 bool	copy_str(void *pelem, void *dest);
 void	destroy_str(void *pelem);
-bool	is_operator(char *str);
-t_array	line_to_array(char **env, char *line);
-char	*get_next_word(char	**env, char **p_line);
+size_t	is_operator(char *str);
+t_array	line_to_array(char *line);
+char	*get_next_word(char *line);
 char	*expand(char **env, char *str);
 
 // ---- FOGGY TREE
