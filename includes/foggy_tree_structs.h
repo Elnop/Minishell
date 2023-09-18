@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:37:29 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/08 17:54:39 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/18 09:03:12 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ enum e_tree_node_type
 	EXEC,
 	AND,
 	OR,
-	PIPE
+	PIPE,
+	REDIR_IN,
+	REDIR_IN_APPEND,
+	REDIR_OUT,
+	REDIR_OUT_APPEND,
 };
 
 typedef struct s_tree_root {

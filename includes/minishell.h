@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/16 05:53:15 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/18 09:19:52 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,10 @@
 # include <readline/history.h>
 
 # include "../libs/liblp_c/liblp.h"
+# include "tokenify.h"
 
 # define SPACERS " \t"
 # define EXPAND_SPECIAL_PARAMETERS "@*-#?!0"
-
-typedef char	*(*t_lexchar_function)(char **p_line);
-
-typedef struct s_lexing_option
-{
-	char				character;
-	t_lexchar_function	run;
-}	t_lexing_option;
 
 typedef struct s_app
 {
@@ -51,8 +44,7 @@ void	builtin_env(char **env_array);
 bool	copy_str(void *pelem, void *dest);
 void	destroy_str(void *pelem);
 size_t	is_operator(char *str);
-t_array	line_to_array(char *line);
-char	*get_next_word(char *line);
+t_array	line_to_tokens(char *line);
 char	*expand(char **env, char *str);
 
 // ---- FOGGY TREE
