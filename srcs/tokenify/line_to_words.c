@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_to_array.c                                    :+:      :+:    :+:   */
+/*   line_to_words.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:17:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/18 08:39:42 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/18 20:29:33 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static bool	push_next_word(t_array *p_words_array, char *line)
 	return (true);
 }
 
-t_array	line_to_array(char *line)
+t_array	line_to_words(char *line)
 {
 	t_array	words;
 

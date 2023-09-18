@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:30:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/16 06:21:20 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/18 20:32:26 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*input_to_foggy_tree(char *line, t_app *p_app)
 {
 	t_array	words;
 
-	words = line_to_array(line);
+	words = line_to_words(line);
 	if (!words)
 		return (NULL);
 	print_str_array((char **)words);

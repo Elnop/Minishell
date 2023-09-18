@@ -12,7 +12,7 @@ FILES = main start
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES))) \
-	$(BUILTINS_OBJS) $(TOKENIFIY_OBJS) $(EXPANDS_OBJS) $(UTILS_OBJS) $(FOGGY_TREE_OBJS)
+	$(BUILTINS_OBJS) $(TOKENIFY_OBJS) $(EXPANDS_OBJS) $(UTILS_OBJS) $(FOGGY_TREE_OBJS)
 
 LIBS_DIR = libs
 

@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 08:41:40 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/18 09:18:52 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/18 20:34:52 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 t_array	line_to_tokens(char *line)
 {
-	return (words_to_tokens(line_to_array(line)));
+	return (line_to_words(line));
 }
