@@ -3,7 +3,6 @@ include mks/builtins.mk
 include mks/tokenify.mk
 include mks/expands.mk
 include mks/utils.mk
-include mks/foggy_tree.mk
 
 NAME = minishell
 
@@ -12,7 +11,7 @@ FILES = main start
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES))) \
-	$(BUILTINS_OBJS) $(TOKENIFY_OBJS) $(EXPANDS_OBJS) $(UTILS_OBJS) $(FOGGY_TREE_OBJS)
+	$(BUILTINS_OBJS) $(TOKENIFY_OBJS) $(EXPANDS_OBJS) $(UTILS_OBJS)
 
 LIBS_DIR = libs
 

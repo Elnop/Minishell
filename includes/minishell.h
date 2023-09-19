@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/18 20:29:25 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/20 00:34:57 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ bool	copy_str(void *pelem, void *dest);
 void	destroy_str(void *pelem);
 size_t	is_operator(char *str);
 t_array	line_to_words(char *line);
+t_array	words_to_tokens(t_array words);
 t_array	line_to_tokens(char *line);
 char	*expand(char **env, char *str);
 

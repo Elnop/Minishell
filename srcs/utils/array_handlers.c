@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:18:44 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/18 20:41:28 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/20 00:49:10 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	copy_str(void *pelem, void *dest)
 {
-	if (!*(char **)pelem)
+	if (!pelem || !*(char **)pelem)
 		*(char **)dest = NULL;
 	else
 		*(char **)dest = lp_strdup(*(char **)pelem);
@@ -24,4 +24,9 @@ bool	copy_str(void *pelem, void *dest)
 void	destroy_str(void *pelem)
 {
 	free(*(char **)pelem);
+}
+
+void	destroy_(void *pelem)
+{
+	free(((t_token *)pelem)->infos);
 }
