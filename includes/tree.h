@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenify.h                                         :+:      :+:    :+:   */
+/*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 08:48:19 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/20 00:27:19 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/21 00:24:43 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENIFY_H
-# define TOKENIFY_H
+#ifndef TREE_H
+# define TREE_H
 
 # include <sys/wait.h>
+# include "../libs/liblp_c/liblp.h"
 
-enum e_token_type
+enum e_node_type
 {
-	EXEC,
-	AND,
-	OR,
-	PIPE,
-	REDIR,
+	CMD_NODE,
+	AND_NODE,
+	OR_NODE,
+	PIPE_NODE,
+	REDIR_NODE
 };
+
+typedef enum e_logical_operators
+{
+	AND_OPERATOR,
+	OR_OPERATOR,
+	NO_OPERATOR
+}	t_logical_operators;
 
 enum e_redir_type
 {
@@ -32,32 +40,27 @@ enum e_redir_type
 	OUT_APPEND,
 };
 
-typedef struct s_token
+typedef struct s_node
 {
-	void				*infos;
-	enum e_token_type	type;
-}	t_token;
+	void				*data;
+	enum e_node_type	type;
+}	t_node;
 
-typedef struct s_cmd_infos {
+typedef struct s_cmd_data {
 	pid_t	fd_in;
 	pid_t	fd_out;
-	t_array	cmd_args;
-}	t_cmd_infos;
+	t_array	args;
+}	t_cmd_data;
 
-typedef struct s_and_infos {
-	t_token	*left;
-	t_token	*right;
-}	t_and_infos;
+typedef struct s_node_links {
+	t_node	*left;
+	t_node	*right;
+}	t_node_links;
 
-typedef struct s_or_infos {
-	t_token	*left;
-	t_token	*right;
-}	t_or_infos;
-
-typedef struct s_redir_infos {
+typedef struct s_redir_data {
 	enum e_redir_type	type;
 	char				*name;
-	t_token				*next_token;
-}	t_redir_infos;
+	t_node				*next_node;
+}	t_redir_data;
 
 #endif

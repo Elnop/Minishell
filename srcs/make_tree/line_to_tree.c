@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   line_to_tree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/20 22:01:43 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/18 08:41:40 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/20 02:04:51 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	start(t_app *p_app)
+t_array	line_to_tree(char *line)
 {
-	char	*line;
+	t_array	words;
+	t_node	*first_node;
 
-	(void)p_app;
-	line = readline("Minish: ");
-	while (line)
-	{
-		line_to_tree(line);
-		free(line);
-		line = readline("Minish: ");
-	}
-	return (true);
+	if (!line)
+		return (NULL);
+	words = line_to_words(line);
+	first_node = words_to_tree(words);
+	print_tree(*first_node);
+	return (first_node);
 }

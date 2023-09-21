@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:18:44 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/20 00:49:10 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/20 02:40:53 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	destroy_str(void *pelem)
 
 void	destroy_(void *pelem)
 {
-	free(((t_token *)pelem)->infos);
+	free(((t_node *)pelem)->data);
 }

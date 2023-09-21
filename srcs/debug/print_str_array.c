@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   print_str_array.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/20 22:01:43 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/20 01:28:08 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/20 01:30:26 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	start(t_app *p_app)
+void	print_str_array(char **strs)
 {
-	char	*line;
+	size_t	i;
 
-	(void)p_app;
-	line = readline("Minish: ");
-	while (line)
+	i = 0;
+	while (i < array_size(strs))
 	{
-		line_to_tree(line);
-		free(line);
-		line = readline("Minish: ");
+		lp_putstr_fd(strs[i], 2);
+		lp_putstr_fd((char *)"\n", 2);
+		i++;
 	}
-	return (true);
 }

@@ -1,4 +1,4 @@
-UTILS_FILES = array_handlers is_operator
+UTILS_FILES = array_handlers is_operator get_left_length
 
 UTILS_SRCS_DIR = utils
 

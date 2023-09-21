@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/20 00:34:57 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/21 04:41:39 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <readline/history.h>
 
 # include "../libs/liblp_c/liblp.h"
-# include "tokenify.h"
+# include "tree.h"
 
 # define SPACERS " \t"
 # define EXPAND_SPECIAL_PARAMETERS "@*-#?!0"
@@ -44,12 +44,20 @@ void	builtin_env(char **env_array);
 bool	copy_str(void *pelem, void *dest);
 void	destroy_str(void *pelem);
 size_t	is_operator(char *str);
-t_array	line_to_words(char *line);
-t_array	words_to_tokens(t_array words);
-t_array	line_to_tokens(char *line);
+size_t	get_left_length(char **words, char *limiter);
 char	*expand(char **env, char *str);
 
-// ---- FOGGY TREE
-void	*input_to_foggy_tree(char *line, t_app *p_app);
+// ---- MAKE TREE
+t_node	*make_and_node(char **words);
+t_node	*make_cmd_node(char **words);
+t_node	*make_or_node(char **words);
+t_node	*make_pipe_node(char **words);
+t_array	line_to_words(char *line);
+t_node	*words_to_tree(char **words);
+t_array	line_to_tree(char *line);
+
+// ---- DEBUG
+void	print_str_array(char **words_list);
+int		print_tree(t_node node);
 
 #endif

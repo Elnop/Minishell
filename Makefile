@@ -1,8 +1,10 @@
 include mks/common_vars.mk
 include mks/builtins.mk
-include mks/tokenify.mk
+include mks/make_tree.mk
+include mks/make_tree_nodes.mk
 include mks/expands.mk
 include mks/utils.mk
+include mks/debug.mk
 
 NAME = minishell
 
@@ -11,7 +13,7 @@ FILES = main start
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES))) \
-	$(BUILTINS_OBJS) $(TOKENIFY_OBJS) $(EXPANDS_OBJS) $(UTILS_OBJS)
+	$(BUILTINS_OBJS) $(MAKE_TREE_OBJS) $(EXPANDS_OBJS) $(UTILS_OBJS) $(DEBUG_OBJS) $(MAKE_TREE_NODES_OBJS)
 
 LIBS_DIR = libs
 

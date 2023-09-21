@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:37:29 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/18 09:03:12 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/21 00:10:34 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 enum e_tree_node_type
 {
 	EXEC,
-	AND,
+	AND_NODE,
 	OR,
 	PIPE,
 	REDIR_IN,
