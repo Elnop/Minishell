@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 02:01:33 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/22 06:11:24 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_app
 {
 	bool	exit;
 	t_array	env;
+	char	lastcode;
 }	t_app;
 
 int		start(void);
@@ -115,8 +116,10 @@ int		print_tree(t_node node);
 
 // ---- ./EXEC
 int		exec(t_node *node);
+pid_t	exec_cmd(t_cmd_data data);
+t_array	*exec_pipe(t_node_links node_links);
+// ---- ./EXEC_UTIS
 char	*get_cmd_path(char *name);
-int		exec_cmd(t_cmd_data data);
 
 // ---- ./EXPANDS
 char	*expand(char **env, char *str);
@@ -125,6 +128,7 @@ char	*expand(char **env, char *str);
 t_array	make_tree(char *line);
 t_array	line_to_words(char *line);
 t_node	*words_to_tree(char **words);
+// ---- ./MAKE_TREE_NODES
 t_node	*make_and_node(char **words);
 t_node	*make_cmd_node(char **words);
 t_node	*make_or_node(char **words);

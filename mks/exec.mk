@@ -1,4 +1,4 @@
-EXEC_FILES = exec
+EXEC_FILES = exec exec_cmd exec_pipe
 
 EXEC_SRCS_DIR = exec
 

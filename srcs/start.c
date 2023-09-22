@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 03:18:38 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/22 04:30:55 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	start(void)
 		if (first_node)
 		{
 			print_tree(*first_node);
-			exec(first_node);
+			get_app_data()->lastcode = exec(first_node);
 		}
 		else
 			printf("Syntux error\n");
