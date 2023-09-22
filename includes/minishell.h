@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 06:11:24 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/22 23:21:05 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,7 @@ t_node	*words_to_tree(char **words);
 t_node	*make_and_node(char **words);
 t_node	*make_cmd_node(char **words);
 t_node	*make_or_node(char **words);
-t_node	*make_pipe_node(char **words);
-t_node	*make_pipeline_nodes(char **words);
+t_node	*make_pipeline_node(char **words);
 
 // ---- ./UTILS
 t_app	*get_app_data(void);

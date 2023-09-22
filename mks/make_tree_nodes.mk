@@ -1,8 +1,7 @@
 MAKE_TREE_NODES_FILES = make_and_node \
 						make_or_node \
 						make_cmd_node \
-						make_pipeline_nodes \
-						make_pipe_node
+						make_pipeline_node
 
 MAKE_TREE_NODES_SRCS_DIR = make_tree
 MAKE_TREE_NODES_SRCS_SUB_DIR = make_nodes

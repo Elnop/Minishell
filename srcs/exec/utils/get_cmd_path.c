@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 01:08:37 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 01:15:25 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/22 23:54:40 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	**get_path_list(void)
 	size_t	i;
 	t_array	env;
 
-	env = get_app_data(NULL)->env;
+	env = get_app_data()->env;
 	i = 0;
 	while (((char **)env)[i] && lp_strncmp(((char **)env)[i], "PATH=", 5))
 		i++;

@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 01:23:05 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/21 23:04:19 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 00:26:10 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,21 @@ int	print_or(t_node_links data)
 	return (code);
 }
 
-int	print_pipe(t_node_links data)
+int	print_pipe(t_array data)
 {
-	printf(BLUE"====> PIPE OPERATOR <====\n"COLOR_OFF);
-	printf(BLUE"====> PIPE LEFT\n"COLOR_OFF);
-	print_tree(*(t_node *)data.left);
-	printf(BLUE"====> PIPE RIGHT\n"COLOR_OFF);
-	return (print_tree(*(t_node *)data.right));
+	size_t	i;
+	size_t	last_code;
+
+	last_code = 0;
+	printf(BLUE"====> PIPELINE <====\n"COLOR_OFF);
+	i = 0;
+	while (i < array_size(data))
+	{
+		printf(BLUE"====> PIPELINE CMD %lu\n"COLOR_OFF, i);
+		last_code = print_tree(*((t_node **)data)[i]);
+		i++;
+	}
+	return (last_code);
 }
 
 int	print_cmd(t_cmd_data data)
@@ -76,7 +84,7 @@ int	print_tree(t_node node)
 	if (node.type == OR_NODE)
 		return (print_or(*(t_node_links *)node.data));
 	if (node.type == PIPE_NODE)
-		return (print_pipe(*(t_node_links *)node.data));
+		return (print_pipe((t_array)node.data));
 	printf("BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG\n");
 	return (1);
 }

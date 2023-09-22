@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_pipeline_nodes.c                              :+:      :+:    :+:   */
+/*   make_pipeline_node.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 05:21:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 03:26:06 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 00:25:15 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,24 @@ bool	has_pipe_operator(char **words)
 	return (false);
 }
 
-t_node	*make_pipeline_nodes(char **words)
+t_node	*make_pipeline_node(char **words)
 {
-	if (has_pipe_operator(words))
-		return (make_pipe_node(words));
-	return (make_cmd_node(words));
+	t_node	*node;
+	t_node	*tmp;
+
+	node = malloc(sizeof(t_node));
+	if (!node)
+		return (NULL);
+	node->type = PIPE_NODE;
+	node->data = array_new(10, sizeof(t_node *), NULL, NULL);
+	while (words)
+	{
+		tmp = make_cmd_node(words);
+		if (!tmp || !array_pushback(&node->data, &tmp))
+			return (NULL);
+		if (!has_pipe_operator(words))
+			break ;
+		words += get_left_length(words, "|") + 1;
+	}
+	return (node);
 }
