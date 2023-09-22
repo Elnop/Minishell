@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 03:52:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/21 05:09:09 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/22 03:30:32 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_node	*make_cmd_node(char **words)
 {
 	t_node	*node;
 
+	if (!words || !*words)
+		return (NULL);
 	node = (t_node *)malloc(sizeof(t_node));
 	if (!node)
 		return (NULL);

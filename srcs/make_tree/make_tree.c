@@ -21,6 +21,5 @@ t_array	make_tree(char *line)
 		return (NULL);
 	words = line_to_words(line);
 	first_node = words_to_tree(words);
-	print_tree(*first_node);
 	return (first_node);
 }

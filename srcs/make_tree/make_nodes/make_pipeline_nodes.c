@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 05:21:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/21 06:03:30 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/22 03:26:06 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ bool	has_pipe_operator(char **words)
 	size_t	i;
 
 	i = 0;
-	while (words[i])
-		if (!lp_strncmp(words[i++], "|", 2))
-			return (true);
+	while (words && words[i] && !is_operator(words[i]))
+		i++;
+	if (words && words[i] && !lp_strncmp(words[i], "|", 2))
+		return (true);
 	return (false);
 }
 

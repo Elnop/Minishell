@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:17:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/21 05:17:44 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/22 03:04:20 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_array	line_to_words(char *line)
 	words = array_new(100, sizeof(char *), copy_str, destroy_str);
 	if (!words)
 		return (NULL);
-	while (*line)
+	while (line && *line)
 	{
 		skip_white_spaces(&line);
 		if (!*line)

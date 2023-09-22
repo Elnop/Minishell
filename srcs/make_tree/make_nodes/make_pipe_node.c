@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 04:39:19 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/21 05:55:29 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/22 03:28:45 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ t_node	*make_pipe_node(char **words)
 	((t_node_links *)node->data)->left = make_cmd_node(words); // replace by pipeline
 	((t_node_links *)node->data)->right
 		= make_pipeline_nodes(words + left_len + 1);
+	if (!((t_node_links *)node->data)->right || !((t_node_links *)node->data)->left)
+		return (NULL);
 	return (node);
 }

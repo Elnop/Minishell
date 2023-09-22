@@ -33,6 +33,8 @@ t_node	*words_to_tree(char **words)
 {
 	t_logical_operators	next_logical_operator;
 
+	if (!words || !*words)
+		return (NULL);
 	next_logical_operator = has_logical_operator(words);
 	if (next_logical_operator == NO_OPERATOR)
 		return (make_pipeline_nodes(words)); // replace by pipeline

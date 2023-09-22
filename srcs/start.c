@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 02:02:12 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/22 03:18:38 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,21 @@ int	start(void)
 	line = readline(SHELL_NAME": ");
 	while (line)
 	{
+		if (!*line)
+		{
+			free(line);
+			line = readline(SHELL_NAME": ");
+			continue ;
+		}
 		first_node = make_tree(line);
 		free(line);
-		exec(first_node);
+		if (first_node)
+		{
+			print_tree(*first_node);
+			exec(first_node);
+		}
+		else
+			printf("Syntux error\n");
 		line = readline(SHELL_NAME": ");
 	}
 	return (true);
