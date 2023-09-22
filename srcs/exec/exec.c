@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_to_tree.c                                   :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 08:41:40 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/20 02:04:51 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/21 23:11:05 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/22 02:09:13 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_array	line_to_tree(char *line)
+int	exec_cmd(t_cmd_data data)
 {
-	t_array	words;
-	t_node	*first_node;
+	char	*cmd_path;
 
-	if (!line)
-		return (NULL);
-	words = line_to_words(line);
-	first_node = words_to_tree(words);
-	print_tree(*first_node);
-	return (first_node);
+	cmd_path = get_cmd_path(((char **)data.args)[0]);
+	if (!cmd_path)
+		return (printf(RED"%s: '%s': command not found"COLOR_OFF,
+				(char *)SHELL_NAME, ((char **)data.args)[0]), 127);
+	printf("---> %s\n", cmd_path);
+	// exec cmd
+	return (1);
+}
+
+int	exec(t_node *node)
+{
+	if (node->type == CMD_NODE)
+		exec_cmd(*(t_cmd_data *)node->data);
+	return (1);
 }

@@ -1,5 +1,5 @@
 MAKE_TREE_FILES = line_to_words \
-				line_to_tree \
+				make_tree \
 				words_to_tree \
 
 MAKE_TREE_SRCS_DIR = make_tree

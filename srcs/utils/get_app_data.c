@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_left_length.c                                  :+:      :+:    :+:   */
+/*   get_app_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 23:28:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/21 06:06:36 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/22 00:06:51 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/22 02:08:26 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-size_t	get_left_length(char **words, char *limiter)
+t_app	*get_app_data(void)
 {
-	size_t	i;
+	static t_app	data;
 
-	i = 0;
-	while (words[i]
-		&& lp_strncmp(words[i], limiter, lp_strlen(words[i])))
-		i++;
-	return (i);
+	return (&data);
 }

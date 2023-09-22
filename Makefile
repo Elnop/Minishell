@@ -5,6 +5,8 @@ include mks/make_tree_nodes.mk
 include mks/expands.mk
 include mks/utils.mk
 include mks/debug.mk
+include mks/exec.mk
+include mks/exec_utils.mk
 
 NAME = minishell
 
@@ -13,7 +15,9 @@ FILES = main start
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES))) \
-	$(BUILTINS_OBJS) $(MAKE_TREE_OBJS) $(EXPANDS_OBJS) $(UTILS_OBJS) $(DEBUG_OBJS) $(MAKE_TREE_NODES_OBJS)
+	$(BUILTINS_OBJS) $(MAKE_TREE_OBJS) $(EXPANDS_OBJS) \
+	$(UTILS_OBJS) $(DEBUG_OBJS) $(MAKE_TREE_NODES_OBJS) \
+	$(EXEC_UTILS_OBJS) $(EXEC_OBJS)
 
 LIBS_DIR = libs
 

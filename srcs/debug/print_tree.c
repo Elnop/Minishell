@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 01:23:05 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/21 04:43:35 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/21 23:04:19 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	print_and(t_node_links data)
 {
 	int	code;
 
-	printf("====> AND OPERATOR <====\n");
-	printf("====> LEFT <====\n");
+	printf(GREEN"====> AND OPERATOR <====\n"COLOR_OFF);
+	printf(GREEN"====> AND LEFT \n"COLOR_OFF);
 	code = print_tree(*(t_node *)data.left);
-	printf("====> RIGHT <====\n");
+	printf(GREEN"====> AND RIGHT\n"COLOR_OFF);
 	if (!code)
 		code = print_tree(*(t_node *)data.right);
 	else
@@ -31,23 +31,23 @@ int	print_or(t_node_links data)
 {
 	int	code;
 
-	printf("====> OR OPERATOR <====\n");
-	printf("====> LEFT <====\n");
+	printf(YELLOW"====> OR OPERATOR <====\n"COLOR_OFF);
+	printf(YELLOW"====> OR LEFT\n"COLOR_OFF);
 	code = print_tree(*(t_node *)data.left);
-	printf("====> RIGHT <====\n");
+	printf(YELLOW"====> OR RIGHT\n"COLOR_OFF);
 	if (code)
 		code = print_tree(*(t_node *)data.right);
 	else
-		printf("no exec\n");
+		printf("no exec\n"COLOR_OFF);
 	return (code);
 }
 
 int	print_pipe(t_node_links data)
 {
-	printf("====> PIPE OPERATOR <====\n");
-	printf("====> LEFT <====\n");
+	printf(BLUE"====> PIPE OPERATOR <====\n"COLOR_OFF);
+	printf(BLUE"====> PIPE LEFT\n"COLOR_OFF);
 	print_tree(*(t_node *)data.left);
-	printf("====> RIGHT <====\n");
+	printf(BLUE"====> PIPE RIGHT\n"COLOR_OFF);
 	return (print_tree(*(t_node *)data.right));
 }
 

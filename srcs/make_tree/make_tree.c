@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_left_length.c                                  :+:      :+:    :+:   */
+/*   make_tree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 23:28:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/21 06:06:36 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/18 08:41:40 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/20 02:04:51 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-size_t	get_left_length(char **words, char *limiter)
+t_array	make_tree(char *line)
 {
-	size_t	i;
+	t_array	words;
+	t_node	*first_node;
 
-	i = 0;
-	while (words[i]
-		&& lp_strncmp(words[i], limiter, lp_strlen(words[i])))
-		i++;
-	return (i);
+	if (!line)
+		return (NULL);
+	words = line_to_words(line);
+	first_node = words_to_tree(words);
+	print_tree(*first_node);
+	return (first_node);
 }

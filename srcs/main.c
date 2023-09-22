@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:12:08 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/16 02:52:25 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/22 02:02:06 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ bool	init_app(t_app	*app, char **env)
 
 int	main(int ac, char **av, char **env)
 {
-	t_app	app;
-
 	(void)ac;
 	(void)av;
-	if (!init_app(&app, env))
+	if (!init_app(get_app_data(), env))
 		return (0);
-	return (start(&app));
+	return (start());
 }
