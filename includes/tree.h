@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 08:48:19 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 07:15:27 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 02:26:19 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ typedef struct s_node_links {
 }	t_node_links;
 
 typedef struct s_cmd_data {
-	pid_t	fd_in;
-	pid_t	fd_out;
+	int		fd_in;
+	int		fd_out;
+	int		close_fd;
 	t_array	args;
 }	t_cmd_data;
 

@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 01:23:05 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 00:26:10 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 02:08:18 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	print_or(t_node_links data)
 	return (code);
 }
 
-int	print_pipe(t_array data)
+int	print_pipeline(t_array data)
 {
 	size_t	i;
 	size_t	last_code;
@@ -84,7 +84,7 @@ int	print_tree(t_node node)
 	if (node.type == OR_NODE)
 		return (print_or(*(t_node_links *)node.data));
 	if (node.type == PIPE_NODE)
-		return (print_pipe((t_array)node.data));
+		return (print_pipeline((t_array)node.data));
 	printf("BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG\n");
 	return (1);
 }

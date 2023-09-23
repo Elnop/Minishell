@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:13:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 05:19:17 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 03:09:27 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,27 @@ char	**array_to_strtab(t_array arr)
 	return (strtab);
 }
 
+void	dup_fds(t_cmd_data cmd_data)
+{
+	if (cmd_data.fd_in != -1)
+	{
+		dup2(cmd_data.fd_in, STDIN_FILENO);
+		close(cmd_data.fd_in);
+	}
+	if (cmd_data.fd_out != -1)
+	{
+		dup2(cmd_data.fd_out, STDOUT_FILENO);
+		close(cmd_data.fd_out);
+	}
+}
+
+void	close_fds(t_cmd_data cmd_data)
+{
+	if (cmd_data.close_fd != -1)
+		close(cmd_data.close_fd);
+}
+
+
 pid_t	exec_cmd(t_cmd_data data)
 {
 	char	*cmd_path;
@@ -60,6 +81,8 @@ pid_t	exec_cmd(t_cmd_data data)
 	child_pid = fork();
 	if (!child_pid)
 	{
+		dup_fds(data);
+		close_fds(data);
 		cmd_args = array_to_strtab(data.args);
 		env = array_to_strtab(get_app_data()->env);
 		execve(cmd_path, cmd_args, env);

@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 23:21:05 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 04:03:37 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,21 @@ void	builtin_env(char **env_array);
 
 // ---- ./DEBUG
 void	print_str_array(char **words_list);
+int		print_and(t_node_links data);
+int		print_or(t_node_links data);
+int		print_pipeline(t_array data);
+int		print_cmd(t_cmd_data data);
 int		print_tree(t_node node);
 
 // ---- ./EXEC
 int		exec(t_node *node);
 pid_t	exec_cmd(t_cmd_data data);
-t_array	*exec_pipe(t_node_links node_links);
+t_array	exec_pipeline(t_array nodes);
+int		exec_and(t_node_links data);
+int		exec_or(t_node_links data);
 // ---- ./EXEC_UTIS
 char	*get_cmd_path(char *name);
+int		wait_pids(t_array *pids);
 
 // ---- ./EXPANDS
 char	*expand(char **env, char *str);

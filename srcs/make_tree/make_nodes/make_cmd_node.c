@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 03:52:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 03:30:32 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 03:09:19 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_node	*make_cmd_node(char **words)
 	node->type = CMD_NODE;
 	((t_cmd_data *)node->data)->fd_in = -1;
 	((t_cmd_data *)node->data)->fd_out = -1;
+	((t_cmd_data *)node->data)->close_fd = -1;
 	((t_cmd_data *)node->data)->args = get_cmd_args(words);
 	if (!((t_cmd_data *)node->data)->args)
 		return (free(node->data), free(node), NULL);

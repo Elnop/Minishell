@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   wait_pids.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 23:11:05 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 04:05:17 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/23 03:20:53 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/23 03:21:07 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	exec(t_node *node)
+int	wait_pids(t_array *pids)
 {
 	int		status;
+	size_t	i;
 
 	status = 0;
-	if (node->type == CMD_NODE)
-		status = waitpid(exec_cmd(*(t_cmd_data *)node->data), &status, 0);
-	if (node->type == PIPE_NODE)
-		status = wait_pids(exec_pipeline((t_array)node->data));
-	if (node->type == AND_NODE)
-		status = exec_and(*(t_node_links *)node->data);
-	if (node->type == OR_NODE)
-		status = exec_or(*(t_node_links *)node->data);
+	i = 0;
+	while (i < array_size(pids))
+		waitpid(((pid_t *)pids)[i++], &status, 0);
+	array_free(pids);
 	return (WIFEXITED(status) & WEXITSTATUS(status));
 }
