@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 06:18:30 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 16:35:39 by titilamenace     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ bool	new_input(char **line)
 		*line = readline(SHELL_NAME": ");
 	}
 	if (!*line)
+	{
+		printf("exit\n");
 		return (false);
+	}
 	return (true);
 }
 

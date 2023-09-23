@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 07:43:01 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 16:53:26 by titilamenace     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <signal.h>
 
 # include "../libs/liblp_c/liblp.h"
 # include "tree.h"
@@ -101,5 +102,7 @@ void	destroy_str(void *pelem);
 size_t	is_operator(char *str);
 size_t	get_left_length(char **words, char *limiter);
 bool	add_to_garbage(void *ptr, t_garbage_item_type type);
+void	handler_sig(int sig);
+void	signal_handler();
 
 #endif
