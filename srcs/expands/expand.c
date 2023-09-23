@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: titilamenace <titilamenace@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:34:08 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/16 02:58:30 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:37:31 by titilamenac      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ static char	*get_var_name(char *str)
 
 static char	*get_env_var_value(char **env, char *var_name)
 {
+	printf("swag");
 	if (!var_name || !lp_strlen(var_name))
 		return (NULL);
+	if (lp_strncmp(var_name, "?", 1) == 0)
+		return (lp_itoa(get_app_data()->exit_status));
 	while (*env)
 	{
 		if (!lp_strncmp(*env, var_name, lp_strlen(var_name)))
