@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 16:53:26 by titilamenace     ###   ########.fr       */
+/*   Updated: 2023/09/23 17:16:39 by titilamenace     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_app
 	t_array	env;
 	bool	debug;
 	char	lastcode;
+	int		exit_status;
 	t_array	garbage;
 }	t_app;
 

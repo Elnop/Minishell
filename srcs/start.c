@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: titilamenace <titilamenace@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 16:35:39 by titilamenace     ###   ########.fr       */
+/*   Updated: 2023/09/23 17:17:13 by titilamenac      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void	start(void)
 	char	*line;
 	t_node	*first_node;
 
+	
 	while (new_input(&line))
 	{
+		signal_handler(1);
 		first_node = make_tree(line);
 		if (first_node)
 		{

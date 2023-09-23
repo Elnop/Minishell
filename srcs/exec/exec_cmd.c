@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: titilamenace <titilamenace@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:13:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 08:08:33 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:36:01 by titilamenac      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ pid_t	exec_cmd(t_cmd_data data)
 	child_pid = fork();
 	if (!child_pid)
 	{
+		signal_handler(2);
 		cmd_path = get_cmd_path(((char **)data.args)[0]);
 		if (!cmd_path)
 		{
