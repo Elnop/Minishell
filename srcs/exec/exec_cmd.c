@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:13:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 03:09:27 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 08:08:33 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,16 @@ pid_t	exec_cmd(t_cmd_data data)
 	char	**env;
 	pid_t	child_pid;
 
-	cmd_path = get_cmd_path(((char **)data.args)[0]);
-	if (!cmd_path)
-		return (printf(RED"%s: '%s': command not found\n"COLOR_OFF,
-				(char *)SHELL_NAME, ((char **)data.args)[0]), 127);
 	child_pid = fork();
 	if (!child_pid)
 	{
+		cmd_path = get_cmd_path(((char **)data.args)[0]);
+		if (!cmd_path)
+		{
+			printf(RED"%s: '%s': command not found\n"COLOR_OFF,
+				(char *)SHELL_NAME, ((char **)data.args)[0]);
+			exit(127);
+		}
 		dup_fds(data);
 		close_fds(data);
 		cmd_args = array_to_strtab(data.args);

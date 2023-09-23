@@ -6,36 +6,42 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 03:45:47 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 06:18:30 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	start(void)
+bool	new_input(char **line)
+{
+	*line = readline(SHELL_NAME": ");
+	while (*line && !**line)
+	{
+		free(*line);
+		*line = readline(SHELL_NAME": ");
+	}
+	if (!*line)
+		return (false);
+	return (true);
+}
+
+void	start(void)
 {
 	char	*line;
 	t_node	*first_node;
 
-	line = readline(SHELL_NAME": ");
-	while (line)
+	while (new_input(&line))
 	{
-		if (!*line)
-		{
-			free(line);
-			line = readline(SHELL_NAME": ");
-			continue ;
-		}
 		first_node = make_tree(line);
-		free(line);
 		if (first_node)
 		{
-			//print_tree(*first_node);
-			get_app_data()->lastcode = exec(first_node);
+			if (get_app_data()->debug)
+				print_tree(*first_node);
+			else
+				get_app_data()->lastcode = exec(first_node);
 		}
 		else
 			printf("Syntux error\n");
-		line = readline(SHELL_NAME": ");
+		free(line);
 	}
-	return (true);
 }

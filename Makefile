@@ -10,7 +10,7 @@ include mks/exec_utils.mk
 
 NAME = minishell
 
-FILES = main start
+FILES = main start init_destroy
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 

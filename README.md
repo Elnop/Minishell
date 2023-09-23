@@ -37,3 +37,9 @@ export a=""
 bash: $a: ambiguous redirect
 ```
 </details>
+
+## Valgrind flags
+
+```
+valgrind --suppressions=./readline.supp --leak-check=full --show-leak-kinds=all ./minishell
+```
