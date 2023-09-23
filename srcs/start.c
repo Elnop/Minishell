@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 06:18:30 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 08:35:06 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,20 @@ bool	new_input(char **line)
 
 void	start(void)
 {
+	t_app	*app;
 	char	*line;
 	t_node	*first_node;
 
-	while (new_input(&line))
+	app = get_app_data();
+	while (!app->exit && new_input(&line))
 	{
 		first_node = make_tree(line);
 		if (first_node)
 		{
-			if (get_app_data()->debug)
+			if (app->debug)
 				print_tree(*first_node);
 			else
-				get_app_data()->lastcode = exec(first_node);
+				app->lastcode = exec(first_node);
 		}
 		else
 			printf("Syntux error\n");

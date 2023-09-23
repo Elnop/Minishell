@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 05:25:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 07:44:19 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/23 08:34:00 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	destroy_app(void)
 	t_app	*app;
 
 	app = get_app_data();
-	array_free(app->garbage);
 	array_free(app->env);
 }
 
