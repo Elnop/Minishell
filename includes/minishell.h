@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 17:16:39 by titilamenace     ###   ########.fr       */
+/*   Updated: 2023/09/25 02:02:23 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include "fcntl.h"
+# include <errno.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/types.h>
@@ -21,7 +22,6 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <signal.h>
 
 # include "../libs/liblp_c/liblp.h"
 # include "tree.h"
@@ -37,7 +37,6 @@ typedef struct s_app
 	t_array	env;
 	bool	debug;
 	char	lastcode;
-	int		exit_status;
 	t_array	garbage;
 }	t_app;
 
@@ -57,6 +56,7 @@ typedef struct s_garbage_item
 void	start(void);
 bool	init_app(int ac, char **av, char **env);
 void	destroy_app(void);
+bool	clean_garbage(void);
 
 // ---- ./BUILTINS
 int		builtin_echo(char *str);
@@ -68,6 +68,7 @@ int		print_and(t_node_links data);
 int		print_or(t_node_links data);
 int		print_pipeline(t_array data);
 int		print_cmd(t_cmd_data data);
+void	print_redirs(t_redir_data *redirs);
 int		print_tree(t_node node);
 
 // ---- ./EXEC
@@ -77,6 +78,7 @@ t_array	exec_pipeline(t_array nodes);
 int		exec_and(t_node_links data);
 int		exec_or(t_node_links data);
 // ---- ./EXEC_UTIS
+bool	open_dup_redirs(t_cmd_data *cmd_data, t_redir_data *redirs);
 char	*get_cmd_path(char *name);
 int		wait_pids(t_array *pids);
 
@@ -92,6 +94,8 @@ t_node	*make_and_node(char **words);
 t_node	*make_cmd_node(char **words);
 t_node	*make_or_node(char **words);
 t_node	*make_pipeline_node(char **words);
+t_array	make_redirs_array(char **words);
+void	redir_data_destructor(void	*pelem);
 void	destroy_cmd(void *pelem);
 void	destroy_pipeline(void *pelem);
 void	destroy_tree_node(void *pelem);
@@ -103,7 +107,5 @@ void	destroy_str(void *pelem);
 size_t	is_operator(char *str);
 size_t	get_left_length(char **words, char *limiter);
 bool	add_to_garbage(void *ptr, t_garbage_item_type type);
-void	handler_sig(int sig);
-void	signal_handler();
 
 #endif

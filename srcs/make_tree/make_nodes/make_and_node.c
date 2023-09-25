@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 03:54:29 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 07:54:48 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/24 23:21:22 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ t_node	*make_and_node(char **words)
 		return (free(node), NULL);
 	node->type = AND_NODE;
 	((t_node_links *)node->data)->left = make_pipeline_node(words);
+	array_remove(words, 0);
 	((t_node_links *)node->data)->right
-		= words_to_tree(words + get_left_length(words, (char *)"&&") + 1);
+		= words_to_tree(words);
 	if (!((t_node_links *)node->data)->right
 		|| !((t_node_links *)node->data)->left)
 		return (NULL);

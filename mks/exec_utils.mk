@@ -1,4 +1,4 @@
-EXEC_UTILS_FILES = get_cmd_path wait_pids
+EXEC_UTILS_FILES = get_cmd_path wait_pids open_dup_redirs
 
 EXEC_UTILS_SRCS_DIR = exec
 EXEC_UTILS_SRCS_SUB_DIR = utils

@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 05:21:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 07:55:25 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/24 23:20:06 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_node	*make_pipeline_node(char **words)
 			return (NULL);
 		if (!has_pipe_operator(words))
 			break ;
-		words += get_left_length(words, "|") + 1;
+		array_remove(words, 0);
 	}
 	add_to_garbage(node, GRBG_TREE_NODE);
 	return (node);
