@@ -1,4 +1,4 @@
-DEBUG_FILES = print_str_array print_tree
+DEBUG_FILES = print_str_array print_tree print_cmd
 
 DEBUG_SRCS_DIR = debug
 

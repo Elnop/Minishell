@@ -6,11 +6,21 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 01:08:37 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 23:54:40 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/24 03:16:19 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+static void	free_strtab(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
+}
 
 static char	**get_path_list(void)
 {
@@ -31,6 +41,7 @@ char	*get_cmd_path(char *name)
 	char	**path_list;
 	size_t	i;
 	char	*cmd_path;
+	char	*tmp;
 
 	if (!name || !*name)
 		return (NULL);
@@ -40,11 +51,15 @@ char	*get_cmd_path(char *name)
 	i = 0;
 	while (path_list[i])
 	{
-		cmd_path = path_list[i];
-		lp_strcat(&cmd_path, lp_strjoin("/", name));
+		cmd_path = lp_strdup(path_list[i]);
+		tmp = lp_strjoin("/", name);
+		lp_strcat(&cmd_path, tmp);
+		free(tmp);
 		if (!access(cmd_path, F_OK))
-			return (cmd_path);
+			return (free_strtab(path_list), cmd_path);
+		free(cmd_path);
 		i++;
 	}
+	free_strtab(path_list);
 	return (NULL);
 }

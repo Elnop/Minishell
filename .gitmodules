@@ -1,3 +1,6 @@
+[submodule "libs/libs/liblp_c"]
+	path = libs/libs/liblp_c
+	url = git@github.com:Elnop/liblp_c.git
 [submodule "libs/liblp_c"]
 	path = libs/liblp_c
 	url = git@github.com:Elnop/liblp_c.git

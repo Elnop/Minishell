@@ -28,7 +28,6 @@ t_logical_operators	has_logical_operator(char **words)
 	return (NO_OPERATOR);
 }
 
-
 t_node	*words_to_tree(char **words)
 {
 	t_logical_operators	next_logical_operator;

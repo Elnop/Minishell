@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:17:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/22 03:04:20 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/25 00:00:59 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static char	*get_next_word(char *line)
 	{
 		quoted_sequence = count_quoted(line + wl);
 		if (quoted_sequence == -1)
-			return ((void)printf("Parsing Error: Quote not closed\n"), NULL);
+			return ((void)lp_dprintf(2, "Parsing Error: Quote not closed\n"),
+				NULL);
 		else if (quoted_sequence)
 			wl += quoted_sequence;
 		else
