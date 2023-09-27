@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 07:48:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/27 06:22:54 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/27 14:42:15 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ char	*get_subword(char **str, char *limiters)
 	return (array_free(buff), subword);
 }
 
-bool	extand_split_push_unquoted(t_array *p_splited, char **p_str)
+bool	expand_split_push_unquoted(t_array *p_splited, char **p_str)
 {
 	char	**tab_tmp;
 	char	*subword;
 
 	subword = get_subword(p_str, "\"'");
-	subword = expand_str(subword);
+	subword = expand_parameters(subword);
 	tab_tmp = lp_pool_split(subword, SPACERS);
 	free(subword);
 	lp_strcat(((char **)*p_splited) + array_size(*p_splited) - 1, *tab_tmp);
@@ -72,13 +72,13 @@ bool	expand_split_push(t_array *p_splited, char	**p_str)
 	else if (**p_str == '"')
 	{
 		(*p_str)++;
-		subword = expand_str(get_subword(p_str, "\""));
+		subword = expand_parameters(get_subword(p_str, "\""));
 		(*p_str)++;
 		lp_strcat((char **)(*p_splited) + array_size(*p_splited) - 1, subword);
 		free(subword);
 	}
 	else
-		extand_split_push_unquoted(p_splited, p_str);
+		expand_split_push_unquoted(p_splited, p_str);
 	if (!((char **)(*p_splited))[array_size(*p_splited) - 1])
 		return (false);
 	return (true);

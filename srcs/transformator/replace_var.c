@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 23:06:42 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/27 06:24:32 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/27 14:02:11 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*get_env_var_name(char *str)
 	return (lp_substr(str, 0, i));
 }
 
-static char	*get_env_var_value(char *var_name)
+char	*get_env_var_value(char *var_name)
 {
 	char	**env;
 

@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/27 05:35:31 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:48:57 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,11 @@ char	*get_cmd_path(char *name);
 int		wait_pids(t_array *pids);
 
 // ---- ./TRANSFORMATOR
-char	*expand_str(char *str);
+char	*expand_parameters(char *str);
 bool	replace_var(char **p_str, t_array *p_buff);
 bool	expand_split_push(t_array *p_splited, char	**p_str);
 bool	transform_list(t_array *list);
+char	*get_env_var_value(char *var_name);
 
 // ---- ./MAKE_TREE
 t_array	make_tree(char *line);

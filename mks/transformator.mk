@@ -1,4 +1,4 @@
-TRANSFORMATOR_FILES = expand_str expand_split_push replace_var transform_list
+TRANSFORMATOR_FILES = expand_parameters expand_split_push replace_var transform_list
 
 TRANSFORMATOR_SRCS_DIR = transformator
 
