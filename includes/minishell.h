@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/25 02:02:23 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:48:57 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		print_tree(t_node node);
 
 // ---- ./EXEC
 int		exec(t_node *node);
-pid_t	exec_cmd(t_cmd_data data);
+pid_t	exec_cmd(t_cmd_data *data);
 t_array	exec_pipeline(t_array nodes);
 int		exec_and(t_node_links data);
 int		exec_or(t_node_links data);
@@ -82,8 +82,12 @@ bool	open_dup_redirs(t_cmd_data *cmd_data, t_redir_data *redirs);
 char	*get_cmd_path(char *name);
 int		wait_pids(t_array *pids);
 
-// ---- ./EXPANDS
-char	*expand(char **env, char *str);
+// ---- ./TRANSFORMATOR
+char	*expand_parameters(char *str);
+bool	replace_var(char **p_str, t_array *p_buff);
+bool	expand_split_push(t_array *p_splited, char	**p_str);
+bool	transform_list(t_array *list);
+char	*get_env_var_value(char *var_name);
 
 // ---- ./MAKE_TREE
 t_array	make_tree(char *line);
@@ -104,8 +108,10 @@ void	destroy_tree_node(void *pelem);
 t_app	*get_app_data(void);
 bool	copy_str(void *pelem, void *dest);
 void	destroy_str(void *pelem);
+void	p_array_destroyer(void *pelem);
 size_t	is_operator(char *str);
 size_t	get_left_length(char **words, char *limiter);
 bool	add_to_garbage(void *ptr, t_garbage_item_type type);
+bool	has_quote(char *str);
 
 #endif

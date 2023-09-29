@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:22:18 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 04:04:51 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/27 05:36:00 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_array	exec_pipeline(t_array nodes)
 		set_cmd_fds(p_cmd_data, pipe_fds, i,
 			array_size(nodes));
 		array_pushback(&pids,
-			(pid_t []){exec_cmd(*p_cmd_data)});
+			(pid_t []){exec_cmd(p_cmd_data)});
 		if (p_cmd_data->fd_in > -1)
 			close(p_cmd_data->fd_in);
 		i++;

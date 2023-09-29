@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:18:44 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/21 23:22:21 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/26 06:58:19 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,7 @@ void	destroy_str(void *pelem)
 	free(*(char **)pelem);
 }
 
+void	p_array_destroyer(void *pelem)
+{
+	array_free(*(t_array *)pelem);
+}

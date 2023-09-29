@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 03:52:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/24 23:17:08 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/27 05:01:47 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_array	get_cmd_args(char **words)
 
 	if (!words || !*words)
 		return (NULL);
-	buff = array_new(10, sizeof(char **), copy_str, destroy_str);
+	buff = array_new(10, sizeof(char *), copy_str, destroy_str);
 	while (*words && !is_operator(*words))
 	{
 		array_pushback(&buff, words);

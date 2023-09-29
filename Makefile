@@ -2,7 +2,7 @@ include mks/common_vars.mk
 include mks/builtins.mk
 include mks/make_tree.mk
 include mks/make_tree_nodes.mk
-include mks/expands.mk
+include mks/transformator.mk
 include mks/utils.mk
 include mks/debug.mk
 include mks/exec.mk
@@ -15,7 +15,7 @@ FILES = main start init_destroy
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES))) \
-	$(BUILTINS_OBJS) $(MAKE_TREE_OBJS) $(EXPANDS_OBJS) \
+	$(BUILTINS_OBJS) $(MAKE_TREE_OBJS) $(TRANSFORMATOR_OBJS) \
 	$(UTILS_OBJS) $(DEBUG_OBJS) $(MAKE_TREE_NODES_OBJS) \
 	$(EXEC_UTILS_OBJS) $(EXEC_OBJS)
 
