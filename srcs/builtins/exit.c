@@ -29,8 +29,11 @@ void	get_exit_code(char **args)
 }
 
 
-int	ft_exit(char **args)
+int	ft_exit(t_array args)
 {	
+	char	**tmp_args;
+
+	tmp_args = array_to_strtab(args);
 	// on appelle la fonction exit et ensuite on exit avec la valeur d'exit que on a recup, avec le message d'erreur approprie
 	ft_putendl_fd("exit", STDERR_FILENO);
 	if (args[1] && args[2])

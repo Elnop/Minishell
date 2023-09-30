@@ -82,10 +82,13 @@ void	print_export(char **export, int	count)
 }
 
 
-int	export(char **env, char **args)
+int	export(char **env, t_array args)
 {
 	char **env_cpy;
 	int	count;
+	char	**tmp_args;
+
+	tmp_args = array_to_strtab(args);
 
 	env_cpy = dup_env(env);
 	count = ft_tab_len(env_cpy);

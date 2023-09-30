@@ -33,9 +33,10 @@ int	count_args(char **args)
 	return (count);
 }
 
-int	echo(char **args)
+int	echo(t_array args)
 {
 	int	i;
+	char **tmp_args = array_to_strtab(args);
 	int	n_arg;
 	// quand on s'attaquera a $? penser a changer la var dans le built in
 	i = 1;
