@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:17:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/25 00:00:59 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/27 19:10:27 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_array	line_to_words(char *line)
 	{
 		skip_white_spaces(&line);
 		if (!*line)
-			return (words);
+			break ;
 		if (!push_next_word(&words, line))
 			return (array_free(words), NULL);
 		line += lp_strlen(((char **)words)[array_size(words) - 1]);

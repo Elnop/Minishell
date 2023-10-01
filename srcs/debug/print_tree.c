@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 01:23:05 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/24 23:55:14 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/30 11:57:07 by elnop            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,39 @@ int	print_pipeline(t_array data)
 	lp_printf(BLUE"====> PIPELINE <====\n"COLOR_OFF);
 	i = 0;
 	while (i < array_size(data))
-	{
-		lp_printf(BLUE"====> PIPELINE CMD %lu\n"COLOR_OFF, i);
-		last_code = print_tree(*((t_node **)data)[i]);
-		i++;
-	}
+		last_code = print_tree(*((t_node **)data)[i++]);
 	return (last_code);
+}
+
+int	print_redir(t_redir_data data)
+{
+	lp_printf(RED"====> REDIR <====\n"COLOR_OFF);
+	if (data.type == REDIR_IN)
+		lp_printf(RED"type : REDIR_IN\n"COLOR_OFF);
+	if (data.type == REDIR_OUT)
+		lp_printf(RED"type : REDIR_OUT\n"COLOR_OFF);
+	if (data.type == REDIR_OUT_APPEND)
+		lp_printf(RED"type : REDIR_OUT_APPEND\n"COLOR_OFF);
+	lp_printf(RED"file_name : %s\n"COLOR_OFF, data.file_name);
+	lp_printf(RED"↓↓↓ next ↓↓↓\n"COLOR_OFF);
+	if (data.next)
+		print_tree(*data.next);
+	else
+		lp_printf(RED"NULL\n"COLOR_OFF);
+	return (0);
 }
 
 int	print_tree(t_node node)
 {
+	if (node.type == PIPE_NODE)
+		return (print_pipeline((t_array)node.data));
+	if (node.type == REDIR_NODE)
+		return (print_redir(*(t_redir_data *)node.data));
 	if (node.type == CMD_NODE)
 		return (print_cmd(*(t_cmd_data *)node.data));
 	if (node.type == AND_NODE)
 		return (print_and(*(t_node_links *)node.data));
 	if (node.type == OR_NODE)
 		return (print_or(*(t_node_links *)node.data));
-	if (node.type == PIPE_NODE)
-		return (print_pipeline((t_array)node.data));
-	lp_printf("BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG\n");
 	return (1);
 }

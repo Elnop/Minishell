@@ -1,6 +1,6 @@
-CC = cc
+CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -g3 #-Wall -Wextra -Werror
 
 SRCS_DIR = srcs
 

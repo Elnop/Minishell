@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 23:06:42 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/27 14:02:11 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/29 02:28:49 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,18 @@ bool	replace_var(char **p_str, t_array *p_buff)
 	if (!**p_str)
 		return (true);
 	(*p_str)++;
-	var_name = get_env_var_name(*p_str);
-	*p_str += lp_strlen(var_name);
-	var_value = get_env_var_value(var_name);
-	free(var_name);
+	if (**p_str == '?')
+	{
+		var_value = lp_itoa(get_app_data()->lastcode);
+		(*p_str)++;
+	}
+	else
+	{
+		var_name = get_env_var_name(*p_str);
+		*p_str += lp_strlen(var_name);
+		var_value = get_env_var_value(var_name);
+		free(var_name);
+	}
 	i = 0;
 	while (var_value && var_value[i])
 		if (!array_pushback(p_buff, var_value + i++))

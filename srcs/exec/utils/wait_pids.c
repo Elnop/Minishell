@@ -19,6 +19,8 @@ int	wait_pids(t_array *pids)
 
 	status = 0;
 	i = 0;
+	if (!pids)
+		return (0);
 	while (i < array_size(pids))
 	{
 		if (((pid_t *)pids)[i] != -1)

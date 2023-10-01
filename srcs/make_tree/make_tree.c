@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-t_array	make_tree(char *line)
+t_node	*make_tree(char *line)
 {
 	t_array	words;
 	t_node	*first_node;
@@ -20,7 +20,13 @@ t_array	make_tree(char *line)
 	if (!line)
 		return (NULL);
 	words = line_to_words(line);
+	if (!words)
+		return (lp_dprintf(2, "Tokenify error\n"), NULL);
+	if (!*(char **)words)
+		return (NULL);
 	first_node = words_to_tree(words);
+	if (!first_node)
+		return ((void)lp_dprintf(2, "Syntux error\n"), NULL);
 	array_free(words);
 	return (first_node);
 }

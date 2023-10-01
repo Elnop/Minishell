@@ -17,7 +17,7 @@ t_logical_operators	has_logical_operator(char **words)
 	size_t	i;
 
 	i = 0;
-	while (words[i])
+	while (words && words[i])
 	{
 		if (!lp_strncmp(words[i], "&&", 2))
 			return (AND_OPERATOR);

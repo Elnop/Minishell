@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 08:48:19 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/25 23:12:55 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/30 11:33:39 by elnop            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,15 @@ typedef struct s_node_links {
 typedef struct s_cmd_data {
 	int		fd_in;
 	int		fd_out;
+	bool	is_piped;
 	int		close_fd;
-	t_array	redirs;
 	t_array	args;
 }	t_cmd_data;
 
 typedef struct s_redir_data {
 	t_redir_type	type;
 	char			*file_name;
+	t_node			*next;
 }	t_redir_data;
 
 #endif

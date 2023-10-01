@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   dup_fds.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 20:59:06 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/28 21:15:56 by lperroti         ###   ########.fr       */
+/*   Created: 2023/09/28 23:34:59 by lperroti          #+#    #+#             */
+/*   Updated: 2023/09/28 23:35:33 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-pid_t	builtin_env(t_cmd_data data)
+void	dup_fds(int fd_in, int fd_out)
 {
-	size_t		i;
-	const char	**env = get_app_data()->env;
-
-	(void)data;
-	i = 0;
-	while (i < array_size(env))
-		lp_putendl_fd((char *)env[i++], 1);
-	return (-1);
+	if (fd_in != -1)
+	{
+		dup2(fd_in, STDIN_FILENO);
+		close(fd_in);
+	}
+	if (fd_out != -1)
+	{
+		dup2(fd_out, STDOUT_FILENO);
+		close(fd_out);
+	}
 }

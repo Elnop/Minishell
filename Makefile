@@ -2,6 +2,7 @@ include mks/common_vars.mk
 include mks/builtins.mk
 include mks/make_tree.mk
 include mks/make_tree_nodes.mk
+include mks/make_tree_utils.mk
 include mks/transformator.mk
 include mks/utils.mk
 include mks/debug.mk
@@ -16,7 +17,7 @@ SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES))) \
 	$(BUILTINS_OBJS) $(MAKE_TREE_OBJS) $(TRANSFORMATOR_OBJS) \
-	$(UTILS_OBJS) $(DEBUG_OBJS) $(MAKE_TREE_NODES_OBJS) \
+	$(UTILS_OBJS) $(DEBUG_OBJS) $(MAKE_TREE_NODES_OBJS) $(MAKE_TREE_UTILS_OBJS)\
 	$(EXEC_UTILS_OBJS) $(EXEC_OBJS)
 
 LIBS_DIR = libs
