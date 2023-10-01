@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-typedef int	(*t_buildin_func)(t_cmd_data data);
+typedef int	(*t_buildin_func)(char **args);
 
 static t_buildin_func	get_builtin_function(char *cmd_name)
 {
@@ -27,10 +27,14 @@ pid_t	exec_builtin(char *cmd_name, t_cmd_data data)
 	pid_t			child_pid;
 	t_buildin_func	run_builtin;
 	int				*save_std_fds;
+	char			**args;
 
 	run_builtin = get_builtin_function(cmd_name);
 	if (!run_builtin)
 		return (0);
+	args = array_to_strtab(data.args);
+	if (!args)
+		return (-1);
 	child_pid = 0;
 	if (data.is_piped)
 		child_pid = fork();
@@ -41,8 +45,8 @@ pid_t	exec_builtin(char *cmd_name, t_cmd_data data)
 		dup_fds(data.fd_in, data.fd_out);
 		close(data.close_fd);
 		if (data.is_piped)
-			exit(run_builtin(data));
-		run_builtin(data);
+			exit(run_builtin(args));
+		run_builtin(args);
 		dup_fds(save_std_fds[0], save_std_fds[1]);
 		return (-1);
 	}	

@@ -53,23 +53,13 @@ typedef struct s_garbage_item
 	t_garbage_item_type	type;
 }	t_garbage_item;
 
-typedef void	(*t_exec_cmd_function)(t_cmd_data data);
-
-typedef struct s_builtin {
-	char				*name;
-	bool				nofork;
-	t_exec_cmd_function	run;
-}	t_builtin;
-
-
 void	start(void);
 bool	init_app(int ac, char **av, char **env);
 void	destroy_app(void);
 bool	clean_garbage(void);
 
 // ---- ./BUILTINS
-int		builtin_echo(char *str);
-int		builtin_env(t_cmd_data data);
+int		builtin_env(char **args);
 
 // ---- ./DEBUG
 void	print_str_array(char **words_list);

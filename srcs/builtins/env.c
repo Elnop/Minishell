@@ -12,14 +12,14 @@
 
 #include "../../includes/minishell.h"
 
-pid_t	builtin_env(t_cmd_data data)
+int	builtin_env(char **args)
 {
 	size_t		i;
 	const char	**env = get_app_data()->env;
 
-	(void)data;
+	(void)args;
 	i = 0;
 	while (i < array_size(env))
 		lp_putendl_fd((char *)env[i++], 1);
-	return (-1);
+	return (0);
 }
