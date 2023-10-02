@@ -35,20 +35,18 @@ pid_t	exec_builtin(char *cmd_name, t_cmd_data data)
 	args = array_to_strtab(data.args);
 	if (!args)
 		return (-1);
-	child_pid = 0;
+	child_pid = -1;
 	if (data.is_piped)
 		child_pid = fork();
 	else
 		save_std_fds = (int [2]){dup(STDIN_FILENO), dup(STDOUT_FILENO)};
-	if (!child_pid)
+	if (!child_pid || child_pid == -1)
 	{
-		dup_fds(data.fd_in, data.fd_out);
-		close(data.close_fd);
+		(void)((dup_fds(data.fd_in, data.fd_out), 1) && close(data.close_fd));
 		if (data.is_piped)
 			exit(run_builtin(args));
-		run_builtin(args);
+		get_app_data()->lastcode = run_builtin(args);
 		dup_fds(save_std_fds[0], save_std_fds[1]);
-		return (-1);
-	}	
+	}
 	return (child_pid);
 }

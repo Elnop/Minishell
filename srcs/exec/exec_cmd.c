@@ -54,7 +54,7 @@ pid_t	exec_cmd(t_cmd_data *pdata)
 	if (!transform_list(&pdata->args))
 		return (lp_dprintf(2, RED"Error\n"COLOR_OFF), -1);
 	child_pid = exec_builtin(*(char **)pdata->args, *pdata);
-	if (child_pid != -1)
+	if (!child_pid)
 		child_pid = normal_exec(*pdata);
 	close_fds(*pdata);
 	return (child_pid);

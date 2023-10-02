@@ -27,11 +27,12 @@ static bool	first_cmd(t_node *node, int pipe_fds[2])
 	if (!new_pipe(pipe_fds))
 		return (false);
 	if (node)
+	{
 		((t_cmd_data *)node->data)->fd_out = pipe_fds[1];
+		((t_cmd_data *)node->data)->close_fd = pipe_fds[0];
+	}
 	else
 		close(pipe_fds[1]);
-	if (node)
-		((t_cmd_data *)node->data)->close_fd = pipe_fds[0];
 	return (true);
 }
 
