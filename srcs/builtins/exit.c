@@ -1,3 +1,5 @@
+#include "../../includes/minishell.h"
+
 bool	arg_is_digit(char *arg)
 {
 	int	i;
@@ -5,7 +7,7 @@ bool	arg_is_digit(char *arg)
 	i = 0;
 	while (arg[i])
 	{
-		if (!ft_is_digit(arg[i]))
+		if (!lp_isdigit(arg[i]))
 			return (false);
 		i++;
 	}
@@ -13,35 +15,33 @@ bool	arg_is_digit(char *arg)
 }
 
 
-void	get_exit_code(char **args)
+int	get_exit_code(char **args)
 {
 	if (!args[1])
-		//set la valeur d'exit a 0 par defaut quand y a pas d'arg
+		return (0);//set la valeur d'exit a 0 par defaut quand y a pas d'arg
 	else if (arg_is_digit(args[1]))
-		//set la valeur d'exit a atoi(arg[1], on peut donner la valeur d'exit en argument
+		return (lp_atoi(args[1])); //set la valeur d'exit a atoi(arg[1], on peut donner la valeur d'exit en argument
 	else
 	{
-		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
-		ft_putstr_fd(args[1], STDERR_FILENO);
-		ft_putstr_fd(": numeric argument is required\n", STDERR_FILENO);
+		lp_putstr_fd("minishell: exit: ", STDERR_FILENO);
+		lp_putstr_fd(args[1], STDERR_FILENO);
+		lp_putstr_fd(": numeric argument is required\n", STDERR_FILENO);
 		// set la valeur d'exit a 255 par defaut
 	}
 }
 
 
-int	ft_exit(t_array args)
+int	builtin_exit(char **args)
 {	
 	char	**tmp_args;
 
 	tmp_args = array_to_strtab(args);
 	// on appelle la fonction exit et ensuite on exit avec la valeur d'exit que on a recup, avec le message d'erreur approprie
-	ft_putendl_fd("exit", STDERR_FILENO);
+	lp_putendl_fd("exit", STDERR_FILENO);
 	if (args[1] && args[2])
 	{
 		lp_putstr_fd("minishell : exit : too many arguments\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	get_exit_code(args); // pour recup le code d'erreur
-	return (EXIT_SUCCESS);
-	
+	return (get_exit_code(args)); // pour recup le code d'erreur
 }

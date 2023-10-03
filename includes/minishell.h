@@ -60,6 +60,11 @@ bool	clean_garbage(void);
 
 // ---- ./BUILTINS
 int		builtin_env(char **args);
+int		builtin_cd(char **args);
+int		builtin_exit(char **args);
+int		builtin_export(char **args);
+int		builtin_pwd(char **str);
+int		builtin_unset(char **str);
 
 // ---- ./DEBUG
 void	print_str_array(char **words_list);

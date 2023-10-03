@@ -82,15 +82,13 @@ void	print_export(char **export, int	count)
 }
 
 
-int	export(char **env, t_array args)
+int	builtin_export(char **args)
 {
 	char **env_cpy;
 	int	count;
-	char	**tmp_args;
 
-	tmp_args = array_to_strtab(args);
-
-	env_cpy = dup_env(env);
+	
+	env_cpy = dup_env(get_app_data()->env);
 	count = ft_tab_len(env_cpy);
 	ft_sort_str_tab(env_cpy, count);
 	if (!args[1])
@@ -101,17 +99,3 @@ int	export(char **env, t_array args)
 	return (EXIT_SUCCESS);
 }
 
-int	main()
-{
-	char	*tab[] = {
-		"pomme",
-		"banane",
-		"abricot",
-		"cerise"
-	};
-	char	*cmd[] = {
-		"export"
-	};
-	export(tab, cmd);
-	return (0);
-}

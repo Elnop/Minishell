@@ -18,6 +18,8 @@ static t_buildin_func	get_builtin_function(char *cmd_name)
 {
 	if (!lp_strncmp(cmd_name, "env", 4))
 		return (builtin_env);
+	if (!lp_strncmp(cmd_name, "cd", 2))
+		return (builtin_cd);
 	else
 		return (NULL);
 }
