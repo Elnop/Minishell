@@ -75,7 +75,7 @@ void	print_export(char **export, int	count)
 	i = 0;
 	while (i < count)
 	{
-		lp_putstr_fd("declare -x ", 1);
+		lp_putstr_fd("export ", 1);
 		lp_putendl_fd(export[i], 1);
 		i++;
 	}
