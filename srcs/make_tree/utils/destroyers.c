@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   destroyers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 07:10:19 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/24 23:08:12 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/30 11:40:48 by elnop            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 void	redir_data_destructor(void	*pelem)
 {
@@ -23,7 +23,6 @@ void	destroy_cmd(void *pelem)
 
 	data = (t_cmd_data *)(*(t_node **)pelem)->data;
 	array_free(data->args);
-	array_free(data->redirs);
 	free(data);
 	free(*(t_node **)pelem);
 }

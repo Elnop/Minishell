@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/27 13:48:57 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/30 15:19:06 by elnop            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ void	destroy_app(void);
 bool	clean_garbage(void);
 
 // ---- ./BUILTINS
-int		builtin_echo(char *str);
-void	builtin_env(char **env_array);
+int		builtin_env(char **args);
 
 // ---- ./DEBUG
 void	print_str_array(char **words_list);
@@ -74,13 +73,16 @@ int		print_tree(t_node node);
 // ---- ./EXEC
 int		exec(t_node *node);
 pid_t	exec_cmd(t_cmd_data *data);
+pid_t	exec_builtin(char *cmd_name, t_cmd_data data);
 t_array	exec_pipeline(t_array nodes);
 int		exec_and(t_node_links data);
 int		exec_or(t_node_links data);
-// ---- ./EXEC_UTIS
-bool	open_dup_redirs(t_cmd_data *cmd_data, t_redir_data *redirs);
+// ---- ./EXEC_UTILS
+bool	open_redirs(t_node *node, t_node *p_cmd);
 char	*get_cmd_path(char *name);
 int		wait_pids(t_array *pids);
+void	dup_fds(int fd_in, int fd_out);
+bool	pipe_cmds(t_node *node, int pipe_fds[2], size_t i, size_t cmds_nb);
 
 // ---- ./TRANSFORMATOR
 char	*expand_parameters(char *str);
@@ -88,9 +90,12 @@ bool	replace_var(char **p_str, t_array *p_buff);
 bool	expand_split_push(t_array *p_splited, char	**p_str);
 bool	transform_list(t_array *list);
 char	*get_env_var_value(char *var_name);
+char	*expand_tilde(char *str);
+char	*get_subword(char **p_str, char *limiters);
+char	*expand_unquote(char **p_str);
 
 // ---- ./MAKE_TREE
-t_array	make_tree(char *line);
+t_node	*make_tree(char *line);
 t_array	line_to_words(char *line);
 t_node	*words_to_tree(char **words);
 // ---- ./MAKE_TREE_NODES
@@ -98,11 +103,14 @@ t_node	*make_and_node(char **words);
 t_node	*make_cmd_node(char **words);
 t_node	*make_or_node(char **words);
 t_node	*make_pipeline_node(char **words);
-t_array	make_redirs_array(char **words);
-void	redir_data_destructor(void	*pelem);
+t_node	*make_redir_node(char **words);
+// ---- ./MAKE_TREE_UTILS
+bool	is_redir_operator(char *word);
+bool	has_redir_operator(char **words);
 void	destroy_cmd(void *pelem);
 void	destroy_pipeline(void *pelem);
 void	destroy_tree_node(void *pelem);
+void	redir_data_destructor(void	*pelem);
 
 // ---- ./UTILS
 t_app	*get_app_data(void);

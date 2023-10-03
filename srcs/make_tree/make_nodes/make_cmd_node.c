@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_cmd_node.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 03:52:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/27 05:01:47 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/30 11:32:00 by elnop            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,9 @@ bool	set_cmd_data(t_cmd_data *cmd_data, char **words)
 	cmd_data->fd_in = -1;
 	cmd_data->fd_out = -1;
 	cmd_data->close_fd = -1;
-	cmd_data->redirs = make_redirs_array(words);
-	if (!cmd_data->redirs)
-		return (NULL);
 	cmd_data->args = get_cmd_args(words);
 	if (!cmd_data->args)
-		return (array_free(cmd_data->redirs), false);
+		return (false);
 	return (true);
 }
 
@@ -48,6 +45,8 @@ t_node	*make_cmd_node(char **words)
 
 	if (!words || !*words)
 		return (NULL);
+	if (has_redir_operator(words))
+		return (make_redir_node(words));
 	node = (t_node *)malloc(sizeof(t_node));
 	if (!node)
 		return (NULL);

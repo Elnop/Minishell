@@ -6,80 +6,78 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 05:49:06 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/23 05:49:45 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/09/28 12:54:02 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef COLOR_H
-# define COLOR_H
-
+#ifndef COLORS_H
+# define COLORS_H
 // =========================
 //     PRINT WITH COLORS
 // =========================
-# define COLOR_OFF "\033[0m"       // Text Reset
+# define COLOR_OFF "\001\033[0m\002"       // Text Reset
 // Regular Colors
-# define BLACK "\033[0;30m"
-# define RED "\033[0;31m"    
-# define GREEN "\033[0;32m"        
-# define YELLOW "\033[0;33m"       
-# define BLUE "\033[0;34m"         
-# define PURPLE "\033[0;35m"       
-# define CYAN "\033[0;36m"         
-# define WHITE "\033[0;37m"        
+# define BLACK "\001\033[0;30m\002"
+# define RED "\001\033[0;31m\002"    
+# define GREEN "\001\033[0;32m\002"        
+# define YELLOW "\001\033[0;33m\002"       
+# define BLUE "\001\033[0;34m\002"         
+# define PURPLE "\001\033[0;35m\002"       
+# define CYAN "\001\033[0;36m\002"         
+# define WHITE "\001\033[0;37m\002"        
 // Bold
-# define BBLACK "\033[1;30m"       // BLACK
-# define BRED "\033[1;31m"         // RED
-# define BGREEN "\033[1;32m"       // GREEN
-# define BYELLOW "\033[1;33m"      // YELLOW
-# define BBLUE "\033[1;34m"        // BLUE
-# define BPURPLE "\033[1;35m"      // PURPLE
-# define BCYAN "\033[1;36m"        // CYAN
-# define BWHITE "\033[1;37m"       // WHITE
+# define BBLACK "\001\033[1;30m\002"       // BLACK
+# define BRED "\001\033[1;31m\002"         // RED
+# define BGREEN "\001\033[1;32m\002"       // GREEN
+# define BYELLOW "\001\033[1;33m\002"      // YELLOW
+# define BBLUE "\001\033[1;34m\002"        // BLUE
+# define BPURPLE "\001\033[1;35m\002"      // PURPLE
+# define BCYAN "\001\033[1;36m\002"        // CYAN
+# define BWHITE "\001\033[1;37m\002"       // WHITE
 // Underline
-# define UBLACK "\033[4;30m"       // BLACK
-# define URED "\033[4;31m"         // RED
-# define UGREEN "\033[4;32m"       // GREEN
-# define UYELLOW "\033[4;33m"      // YELLOW
-# define UBLUE "\033[4;34m"        // BLUE
-# define UPURPLE "\033[4;35m"      // PURPLE
-# define UCYAN "\033[4;36m"        // CYAN
-# define UWHITE "\033[4;37m"       // WHITE
+# define UBLACK "\001\033[4;30m\002"       // BLACK
+# define URED "\001\033[4;31m\002"         // RED
+# define UGREEN "\001\033[4;32m\002"       // GREEN
+# define UYELLOW "\001\033[4;33m\002"      // YELLOW
+# define UBLUE "\001\033[4;34m\002"        // BLUE
+# define UPURPLE "\001\033[4;35m\002"      // PURPLE
+# define UCYAN "\001\033[4;36m\002"        // CYAN
+# define UWHITE "\001\033[4;37m\002"       // WHITE
 // Background
-# define BG_BLACK "\033[40m"       // BLACK
-# define BG_RED "\033[41m"         // RED
-# define BG_GREEN "\033[42m"       // GREEN
-# define BG_YELLOW "\033[43m"      // YELLOW
-# define BG_BLUE "\033[44m"        // BLUE
-# define BG_PURPLE "\033[45m"      // PURPLE
-# define BG_CYAN "\033[46m"        // CYAN
-# define BG_WHITE "\033[47m"       // WHITE
+# define BG_BLACK "\001\033[40m\002"       // BLACK
+# define BG_RED "\001\033[41m\002"         // RED
+# define BG_GREEN "\001\033[42m\002"       // GREEN
+# define BG_YELLOW "\001\033[43m\002"      // YELLOW
+# define BG_BLUE "\001\033[44m\002"        // BLUE
+# define BG_PURPLE "\001\033[45m\002"      // PURPLE
+# define BG_CYAN "\001\033[46m\002"        // CYAN
+# define BG_WHITE "\001\033[47m\002"       // WHITE
 // High Intensity
-# define IBLACK "\033[0;90m"       // BLACK
-# define IRED "\033[0;91m"         // RED
-# define IGREEN "\033[0;92m"       // GREEN
-# define IYELLOW "\033[0;93m"      // YELLOW
-# define IBLUE "\033[0;94m"        // BLUE
-# define IPURPLE "\033[0;95m"      // PURPLE
-# define ICYAN "\033[0;96m"        // CYAN
-# define IWHITE "\033[0;97m"       // WHITE
+# define IBLACK "\001\033[0;90m\002"       // BLACK
+# define IRED "\001\033[0;91m\002"         // RED
+# define IGREEN "\001\033[0;92m\002"       // GREEN
+# define IYELLOW "\001\033[0;93m\002"      // YELLOW
+# define IBLUE "\001\033[0;94m\002"        // BLUE
+# define IPURPLE "\001\033[0;95m\002"      // PURPLE
+# define ICYAN "\001\033[0;96m\002"        // CYAN
+# define IWHITE "\001\033[0;97m\002"       // WHITE
 // Bold High Intensity
-# define BIBLACK "\033[1;90m"      // BLACK
-# define BIRED "\033[1;91m"        // RED
-# define BIGREEN "\033[1;92m"      // GREEN
-# define BIYELLOW "\033[1;93m"     // YELLOW
-# define BIBLUE "\033[1;94m"       // BLUE
-# define BIPURPLE "\033[1;95m"     // PURPLE
-# define BICYAN "\033[1;96m"       // CYAN
-# define BIWHITE "\033[1;97m"      // WHITE
+# define BIBLACK "\001\033[1;90m\002"      // BLACK
+# define BIRED "\001\033[1;91m\002"        // RED
+# define BIGREEN "\001\033[1;92m\002"      // GREEN
+# define BIYELLOW "\001\033[1;93m\002"     // YELLOW
+# define BIBLUE "\001\033[1;94m\002"       // BLUE
+# define BIPURPLE "\001\033[1;95m\002"     // PURPLE
+# define BICYAN "\001\033[1;96m\002"       // CYAN
+# define BIWHITE "\001\033[1;97m\002"      // WHITE
 // High Intensity backgrounds
-# define BG_IBLACK "\033[0;100m"   // BLACK
-# define BG_IRED "\033[0;101m"     // Red
-# define BG_IGREEN "\033[0;102m"   // Green
-# define BG_IYELLOW "\033[0;103m"  // YELLOW
-# define BG_IBLUE "\033[0;104m"    // Blue
-# define BG_IPURPLE "\033[0;105m"  // PURPLE
-# define BG_ICYAN "\033[0;106m"    // Cyan
-# define BG_IWHITE "\033[0;107m"   // White
+# define BG_IBLACK "\001\033[0;100m\002"   // BLACK
+# define BG_IRED "\001\033[0;101m\002"     // Red
+# define BG_IGREEN "\001\033[0;102m\002"   // Green
+# define BG_IYELLOW "\001\033[0;103m\002"  // YELLOW
+# define BG_IBLUE "\001\033[0;104m\002"    // Blue
+# define BG_IPURPLE "\001\033[0;105m\002"  // PURPLE
+# define BG_ICYAN "\001\033[0;106m\002"    // Cyan
+# define BG_IWHITE "\001\033[0;107m\002"   // White
 
 #endif

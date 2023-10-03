@@ -19,12 +19,17 @@ int	wait_pids(t_array *pids)
 
 	status = 0;
 	i = 0;
+	if (!pids)
+		return (0);
 	while (i < array_size(pids))
 	{
 		if (((pid_t *)pids)[i] != -1)
+		{
 			waitpid(((pid_t *)pids)[i], &status, 0);
+			get_app_data()->lastcode = WIFEXITED(status) & WEXITSTATUS(status);
+		}
 		i++;
 	}
 	array_free(pids);
-	return (WIFEXITED(status) & WEXITSTATUS(status));
+	return (get_app_data()->lastcode);
 }
