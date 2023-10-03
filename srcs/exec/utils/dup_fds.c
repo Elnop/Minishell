@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   dup_fds.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: titilamenace <titilamenace@student.42.f    +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 23:34:59 by lperroti          #+#    #+#             */
 /*   Updated: 2023/09/28 23:35:33 by lperroti         ###   ########.fr       */

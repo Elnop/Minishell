@@ -3,19 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: titilamenace <titilamenace@student.42.f    +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD:srcs/expands/expand.c
-/*   Created: 2023/09/11 19:34:08 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/26 18:59:36 by titilamenac      ###   ########.fr       */
-=======
 /*   Created: 2023/09/25 23:06:42 by lperroti          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/09/27 14:02:11 by lperroti         ###   ########.fr       */
->>>>>>> master:srcs/transformator/replace_var.c
-=======
 /*   Updated: 2023/09/29 02:28:49 by lperroti         ###   ########.fr       */
->>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: titilamenace <titilamenace@student.42.f    +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
 /*   Updated: 2023/09/28 13:11:18 by lperroti         ###   ########.fr       */
@@ -33,8 +33,7 @@ void	start(void)
 	while (new_input(&line))
 	{
 		first_node = make_tree(line);
-		print_tree(*first_node);
-		/*if (first_node)
+		if (first_node)
 		{
 			if (get_app_data()->debug)
 				print_tree(*first_node);
