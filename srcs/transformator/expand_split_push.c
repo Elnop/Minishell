@@ -6,21 +6,11 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 07:48:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/03 14:48:07 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:39:35 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-size_t	strtab_size(char **tab)
-{
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
-}
 
 char	*get_subword(char **p_str, char *limiters)
 {
@@ -50,11 +40,11 @@ bool	expand_split_push_unquoted(t_array *p_splited, char **p_str)
 	free(subword);
 	lp_strcat(((char **)*p_splited) + array_size(*p_splited) - 1, *tab_tmp);
 	if (!((char **)*p_splited)[array_size(*p_splited) - 1])
-		return (lp_free_strtab(tab_tmp, strtab_size(tab_tmp)), false);
-	if (strtab_size(tab_tmp) > 1 && !array_pushback_tab(p_splited,
-			tab_tmp + 1, strtab_size(tab_tmp) - 1))
-		return (lp_free_strtab(tab_tmp, strtab_size(tab_tmp)), false);
-	lp_free_strtab(tab_tmp, strtab_size(tab_tmp));
+		return (lp_free_strtab(tab_tmp, lp_strtab_size(tab_tmp)), false);
+	if (lp_strtab_size(tab_tmp) > 1 && !array_pushback_tab(p_splited,
+			tab_tmp + 1, lp_strtab_size(tab_tmp) - 1))
+		return (lp_free_strtab(tab_tmp, lp_strtab_size(tab_tmp)), false);
+	lp_free_strtab(tab_tmp, lp_strtab_size(tab_tmp));
 	return (true);
 }
 
