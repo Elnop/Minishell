@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 21:51:44 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/28 23:56:26 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/03 14:49:20 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ typedef int	(*t_buildin_func)(char **args);
 
 static t_buildin_func	get_builtin_function(char *cmd_name)
 {
-	if (!lp_strncmp(cmd_name, "env", lp_strlen(cmd_name)))
+	if (!lp_strncmp(cmd_name, "env", 4))
 		return (builtin_env);
 	else
 		return (NULL);

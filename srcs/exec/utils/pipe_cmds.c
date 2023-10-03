@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 14:07:58 by elnop             #+#    #+#             */
-/*   Updated: 2023/09/30 15:29:33 by elnop            ###   ########.fr       */
+/*   Updated: 2023/10/03 15:41:13 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ static bool	first_cmd(t_node *node, int pipe_fds[2])
 
 static bool	last_cmd(t_node *node, int pipe_fds[2])
 {
+	close(pipe_fds[1]);
 	if (node)
 		((t_cmd_data *)node->data)->fd_in = pipe_fds[0];
 	else
 		close(pipe_fds[0]);
-	close(pipe_fds[1]);
 	return (true);
 }
 

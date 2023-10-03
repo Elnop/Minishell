@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 07:48:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/28 01:40:58 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/03 14:48:07 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,15 @@ bool	expand_split_push_unquoted(t_array *p_splited, char **p_str)
 
 	subword = get_subword(p_str, "\"'");
 	subword = expand_parameters(subword);
+	if (!subword)
+		return (NULL);
 	tab_tmp = lp_pool_split(subword, SPACERS);
 	free(subword);
 	lp_strcat(((char **)*p_splited) + array_size(*p_splited) - 1, *tab_tmp);
 	if (!((char **)*p_splited)[array_size(*p_splited) - 1])
 		return (lp_free_strtab(tab_tmp, strtab_size(tab_tmp)), false);
-	if (!array_pushback_tab(p_splited, tab_tmp + 1, strtab_size(tab_tmp) - 1))
+	if (strtab_size(tab_tmp) > 1 && !array_pushback_tab(p_splited,
+			tab_tmp + 1, strtab_size(tab_tmp) - 1))
 		return (lp_free_strtab(tab_tmp, strtab_size(tab_tmp)), false);
 	lp_free_strtab(tab_tmp, strtab_size(tab_tmp));
 	return (true);

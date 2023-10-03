@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_redirs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 02:01:58 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/30 15:16:43 by elnop            ###   ########.fr       */
+/*   Updated: 2023/10/03 16:01:44 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,17 @@ bool	open_and_replace(t_redir_data redir, t_node *p_cmd)
 		file_fd = open(redir.file_name, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 	if (redir.type == REDIR_OUT_APPEND)
 		file_fd = open(redir.file_name, O_WRONLY | O_CREAT | O_APPEND, S_IRWXU);
-	if (p_cmd)
-		replace_fd(&((t_cmd_data *)p_cmd->data)->fd_out, file_fd);
+	if (!p_cmd)
+	{
+		close(file_fd);
+		return (true);
+	}
 	if (check_print_errors(redir.file_name))
 		return (false);
+	if (redir.type == REDIR_OUT || redir.type == REDIR_OUT_APPEND)
+		replace_fd(&((t_cmd_data *)p_cmd->data)->fd_out, file_fd);
+	if (redir.type == REDIR_IN)
+		replace_fd(&((t_cmd_data *)p_cmd->data)->fd_in, file_fd);
 	return (true);
 }
 
