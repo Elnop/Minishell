@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 02:01:58 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/03 16:01:44 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:00:16 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,16 @@ bool	open_and_replace(t_redir_data redir, t_node *p_cmd)
 
 bool	open_redirs(t_node *node, t_node *p_cmd)
 {
-	t_redir_data	redir;
+	t_redir_data	*redir;
 
 	while (node && node->type != CMD_NODE)
 	{
-		redir = *(t_redir_data *)node->data;
-		if (!expand_unquote(&redir.file_name))
+		redir = (t_redir_data *)node->data;
+		if (!expand_unquote(&redir->file_name))
 			return (false);
-		if (!open_and_replace(redir, p_cmd))
+		if (!open_and_replace(*redir, p_cmd))
 			return (false);
-		node = redir.next;
+		node = redir->next;
 	}
 	return (true);
 }

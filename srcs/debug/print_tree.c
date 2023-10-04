@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 01:23:05 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/30 11:57:07 by elnop            ###   ########.fr       */
+/*   Updated: 2023/10/04 15:29:26 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	print_pipeline(t_array data)
 	lp_printf(BLUE"====> PIPELINE <====\n"COLOR_OFF);
 	i = 0;
 	while (i < array_size(data))
+	{
+		lp_printf(BLUE"====> ROW %u\n"COLOR_OFF, i);
 		last_code = print_tree(*((t_node **)data)[i++]);
+	}
 	return (last_code);
 }
 
