@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/30 15:19:06 by elnop            ###   ########.fr       */
+/*   Updated: 2023/10/03 21:24:08 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	destroy_str(void *pelem);
 void	p_array_destroyer(void *pelem);
 size_t	is_operator(char *str);
 size_t	get_left_length(char **words, char *limiter);
-bool	add_to_garbage(void *ptr, t_garbage_item_type type);
+void	*add_to_garbage(void *ptr, t_garbage_item_type type);
 bool	has_quote(char *str);
 
 #endif
