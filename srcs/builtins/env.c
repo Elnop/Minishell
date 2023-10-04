@@ -21,7 +21,7 @@ int	builtin_env(char **args)
 	i = 0;
 	while (i < array_size(env) - 1)
 	{
-		if (lp_strchr((char *)env[i], '='))
+		if (env[i] && lp_strchr((char *)env[i], '='))
 			lp_putendl_fd((char *)env[i], 1);
 		i++;
 	}

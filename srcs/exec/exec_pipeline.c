@@ -1,4 +1,5 @@
 /* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
@@ -39,7 +40,6 @@ t_array	exec_pipeline(t_array nodes)
 			continue ;
 	//	if (p_cmd_node)
 	//		print_cmd(*(t_cmd_data *)p_cmd_node->data);
-		printf("cmdnde : %p\n", p_cmd_node);
 		if (p_cmd_node)
 			array_pushback(&pids,
 				(pid_t []){exec_cmd(((t_cmd_data *)p_cmd_node->data))});
