@@ -14,7 +14,6 @@ bool	arg_is_digit(char *arg)
 	return (true);
 }
 
-
 int	get_exit_code(char **args)
 {
 	if (!args[1])
@@ -26,22 +25,23 @@ int	get_exit_code(char **args)
 		lp_putstr_fd("minishell: exit: ", STDERR_FILENO);
 		lp_putstr_fd(args[1], STDERR_FILENO);
 		lp_putstr_fd(": numeric argument is required\n", STDERR_FILENO);
-		// set la valeur d'exit a 255 par defaut
+		return (255);
 	}
 }
 
-
 int	builtin_exit(char **args)
 {	
-	char	**tmp_args;
+	size_t	ac;
+	int		test;
 
-	tmp_args = array_to_strtab(args);
-	// on appelle la fonction exit et ensuite on exit avec la valeur d'exit que on a recup, avec le message d'erreur approprie
+	ac = lp_strtab_size(args);
 	lp_putendl_fd("exit", STDERR_FILENO);
-	if (args[1] && args[2])
+	if (ac > 2)
 	{
 		lp_putstr_fd("minishell : exit : too many arguments\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	return (get_exit_code(args)); // pour recup le code d'erreur
+	test = get_exit_code(args);
+	printf("lavaleur de retour %d\n", test);
+	return (lp_free_strtab(args, ac), get_exit_code(args)); // pour recup le code d'erreur
 }

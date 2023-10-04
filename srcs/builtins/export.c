@@ -85,17 +85,18 @@ void	print_export(char **export, int	count)
 int	builtin_export(char **args)
 {
 	char **env_cpy;
+	size_t	ac;
 	int	count;
 
-	
+	ac = lp_strtab_size(args);
 	env_cpy = dup_env(get_app_data()->env);
 	count = ft_tab_len(env_cpy);
 	ft_sort_str_tab(env_cpy, count);
 	if (!args[1])
 	{
 		print_export(env_cpy, count);
-		return (free(env_cpy), EXIT_SUCCESS);
+		return (free(env_cpy), lp_free_strtab(args, ac), EXIT_SUCCESS);
 	}
-	return (EXIT_SUCCESS);
+	return (lp_free_strtab(args, ac), EXIT_SUCCESS);
 }
 

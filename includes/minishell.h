@@ -63,8 +63,9 @@ int		builtin_env(char **args);
 int		builtin_cd(char **args);
 int		builtin_exit(char **args);
 int		builtin_export(char **args);
-int		builtin_pwd(char **str);
+int		builtin_pwd(char **args);
 int		builtin_unset(char **str);
+int		builtin_echo(char **args);
 
 // ---- ./DEBUG
 void	print_str_array(char **words_list);

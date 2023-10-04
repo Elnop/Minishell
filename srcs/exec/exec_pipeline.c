@@ -37,8 +37,8 @@ t_array	exec_pipeline(t_array nodes)
 			return (NULL);
 		if (!p_cmd_node && ++i)
 			continue ;
-		if (p_cmd_node)
-			print_cmd(*(t_cmd_data *)p_cmd_node->data);
+	//	if (p_cmd_node)
+	//		print_cmd(*(t_cmd_data *)p_cmd_node->data);
 		array_pushback(&pids,
 			(pid_t []){exec_cmd(((t_cmd_data *)p_cmd_node->data))});
 		if (p_cmd_node && ((t_cmd_data *)p_cmd_node->data)->fd_in > -1)

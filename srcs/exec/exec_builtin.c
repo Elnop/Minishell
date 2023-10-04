@@ -18,8 +18,16 @@ static t_buildin_func	get_builtin_function(char *cmd_name)
 {
 	if (!lp_strncmp(cmd_name, "env", 4))
 		return (builtin_env);
-	if (!lp_strncmp(cmd_name, "cd", 2))
+	if (!lp_strncmp(cmd_name, "cd", 3))
 		return (builtin_cd);
+	if (!lp_strncmp(cmd_name, "exit", 5))
+		return (builtin_exit);
+	if (!lp_strncmp(cmd_name, "echo", 5))
+		return (builtin_echo);
+	if (!lp_strncmp(cmd_name, "export", 7))
+		return (builtin_export);
+	if (!lp_strncmp(cmd_name, "pwd", 4))
+		return (builtin_pwd);
 	else
 		return (NULL);
 }
@@ -44,9 +52,9 @@ pid_t	exec_builtin(char *cmd_name, t_cmd_data data)
 		save_std_fds = (int [2]){dup(STDIN_FILENO), dup(STDOUT_FILENO)};
 	if (!child_pid || child_pid == -1)
 	{
-		(void)((dup_fds(data.fd_in, data.fd_out), 1) && close(data.close_fd));
-		if (data.is_piped)
-			exit(run_builtin(args));
+		dup_fds(data.fd_in, data.fd_out);
+		(void)(data.close_fd != -1 && close(data.close_fd));
+		(void)(data.is_piped && (exit(run_builtin(args)), 1));
 		get_app_data()->lastcode = run_builtin(args);
 		dup_fds(save_std_fds[0], save_std_fds[1]);
 	}

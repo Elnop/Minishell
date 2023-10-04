@@ -1,4 +1,4 @@
-BUILTINS_FILES = env cd exit export unset pwd
+BUILTINS_FILES = env cd exit export unset pwd echo
 
 BUILTINS_SRCS_DIR = builtins
 
