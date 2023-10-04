@@ -36,5 +36,5 @@ int	builtin_echo(char **args)
 	}
 	if (n_arg == 0)
 		write(1, "\n", 1); // retour a la ligne sans option -n
-	return (lp_free_strtab(args, ac), 0);
+	return (0);
 }
