@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroyers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 07:10:19 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/30 11:40:48 by elnop            ###   ########.fr       */
+/*   Updated: 2023/10/04 15:51:18 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void	redir_data_destructor(void	*pelem)
 {
-	free(((t_redir_data *)pelem)->file_name);
+	t_redir_data	*data;
+
+	data = (t_redir_data *)(*(t_node **)pelem)->data;
+	free(data->file_name);
+	free(data);
+	free(*(t_node **)pelem);
 }
 
 void	destroy_cmd(void *pelem)
@@ -45,4 +50,6 @@ void	destroy_tree_node(void *pelem)
 		free((*(t_node **)pelem)->data);
 		free(*(t_node **)pelem);
 	}
+	else if ((*(t_node **)pelem)->type == REDIR_NODE)
+		redir_data_destructor(pelem);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_cmd_node.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 03:52:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/30 11:32:00 by elnop            ###   ########.fr       */
+/*   Updated: 2023/10/04 15:34:33 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ t_node	*make_cmd_node(char **words)
 {
 	t_node	*node;
 
-	if (!words || !*words)
-		return (NULL);
-	if (has_redir_operator(words))
+	if (words && *words && has_redir_operator(words))
 		return (make_redir_node(words));
+	if (!words || !*words || is_operator(*words))
+		return (NULL);
 	node = (t_node *)malloc(sizeof(t_node));
 	if (!node)
 		return (NULL);

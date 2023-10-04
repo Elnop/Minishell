@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_redir_node.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 04:44:31 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/30 12:02:15 by elnop            ###   ########.fr       */
+/*   Updated: 2023/10/04 15:40:16 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ t_node	*make_redir_node(char **words)
 	t_node	*p_node;
 	size_t	i;
 
-	p_node = malloc(sizeof(t_node));
-	p_node->type = REDIR_NODE;
 	i = 0;
 	while (words[i] && !is_operator(words[i]))
 		i++;
 	if (is_redir_operator(words[i])
 		&& (!words[i + 1] || is_operator(words[i + 1])))
-		return (free(p_node), NULL);
+		return (NULL);
+	p_node = malloc(sizeof(t_node));
+	p_node->type = REDIR_NODE;
 	p_node->data = make_redir_data(words, i);
 	if (!p_node->data)
 		return (free(p_node), NULL);
