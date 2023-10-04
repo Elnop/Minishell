@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 03:20:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/24 03:04:10 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/03 21:25:17 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ int	wait_pids(t_array *pids)
 		}
 		i++;
 	}
-	array_free(pids);
 	return (get_app_data()->lastcode);
 }

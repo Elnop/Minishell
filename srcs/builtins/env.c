@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 20:59:06 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/28 21:15:56 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/03 22:24:57 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ int	builtin_env(char **args)
 
 	(void)args;
 	i = 0;
-	while (i < array_size(env))
-		lp_putendl_fd((char *)env[i++], 1);
+	while (i < array_size(env) - 1)
+	{
+		if (lp_strchr((char *)env[i], '='))
+			lp_putendl_fd((char *)env[i], 1);
+		i++;
+	}
 	return (0);
 }

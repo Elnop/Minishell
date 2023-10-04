@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:22:18 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/03 15:30:31 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/03 21:23:18 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_array	exec_pipeline(t_array nodes)
 	size_t		i;
 	t_node		*p_cmd_node;
 
-	pids = array_new(10, sizeof(pid_t), NULL, NULL);
+	pids = add_to_garbage(array_new(10, sizeof(pid_t), NULL, NULL), GRBG_ARRAY);
 	i = 0;
-	while (i < array_size(nodes))
+	while (pids && i < array_size(nodes))
 	{
 		p_cmd_node = get_cmd(((t_node **)nodes)[i]);
 		if (!pipe_cmds(p_cmd_node, pipe_fds, i, array_size(nodes)))
