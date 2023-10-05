@@ -65,7 +65,6 @@ void	ft_sort_str_tab(char **tab, int count)
 		}
 		i++;
 	}
-
 }
 
 void	print_export(char **export, int	count)
