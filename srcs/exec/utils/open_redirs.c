@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 02:01:58 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/04 16:58:40 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:24:23 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ bool	open_and_replace(t_redir_data redir, t_node *p_cmd)
 		file_fd = open(redir.file_name, O_WRONLY | O_CREAT | O_APPEND, S_IRWXU);
 	if (!p_cmd)
 	{
-		(!check_print_errors(redir.file_name)
+		(void)(!check_print_errors(redir.file_name)
 			&& file_fd != -1 && (close(file_fd), 1));
 		return (true);
 	}
