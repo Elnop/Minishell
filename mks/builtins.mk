@@ -1,5 +1,4 @@
-BUILTINS_FILES = env cd exit export unset pwd echo
-
+BUILTINS_FILES = env cd exit export unset pwd echo cd_utils
 BUILTINS_SRCS_DIR = builtins
 
 BUILTINS_SRCS = $(addprefix $(SRCS_DIR)/$(BUILTINS_SRCS_DIR)/, $(addsuffix .c, $(BUILTINS_FILES)))

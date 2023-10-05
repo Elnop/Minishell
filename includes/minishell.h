@@ -66,6 +66,9 @@ int		builtin_export(char **args);
 int		builtin_pwd(char **args);
 int		builtin_unset(char **str);
 int		builtin_echo(char **args);
+int		get_env_index(char *to_find);
+char	*cat_key_value(char *key, char *value);
+bool	checking_relative_path(char	*str);
 
 // ---- ./DEBUG
 void	print_str_array(char **words_list);
