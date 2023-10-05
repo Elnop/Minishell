@@ -17,9 +17,9 @@ bool	arg_is_digit(char *arg)
 int	get_exit_code(char **args)
 {
 	if (!args[1])
-		return (0);//set la valeur d'exit a 0 par defaut quand y a pas d'arg
+		return (0);
 	else if (arg_is_digit(args[1]))
-		return (lp_atoi(args[1])); //set la valeur d'exit a atoi(arg[1], on peut donner la valeur d'exit en argument
+		return (lp_atoi(args[1]));
 	else
 	{
 		lp_putstr_fd("minishell: exit: ", STDERR_FILENO);
@@ -30,7 +30,7 @@ int	get_exit_code(char **args)
 }
 
 int	builtin_exit(char **args)
-{	
+{
 	size_t	ac;
 	int		test;
 
@@ -43,5 +43,5 @@ int	builtin_exit(char **args)
 	}
 	test = get_exit_code(args);
 	printf("lavaleur de retour %d\n", test);
-	return (lp_free_strtab(args, ac), get_exit_code(args)); // pour recup le code d'erreur
+	return (get_exit_code(args));
 }
