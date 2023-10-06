@@ -30,7 +30,7 @@ int	env_cmp(char *env, char *key)
 	int	i;
 
 	i = 0;
-	while (env[i] && env[i] == key[i] && env[i] != '=' && key[i] != '=')
+	while (env[i] && env[i + 1] != '=' && key[i + 1] != '=' && env[i] && key[i])
 		i++;
 	return (env[i] - key[i]);
 }
@@ -44,7 +44,9 @@ bool	is_in_env(char	*key, char **dup_env)
 	while (dup_env[i])
 	{
 		if (env_cmp(dup_env[i], key) == 0)
+		{
 			return (true);
+		}
 		i++;
 	}
 	return (false);
@@ -99,6 +101,29 @@ void	ft_sort_str_tab(char **tab, int count)
 	}
 }
 
+void	print_key_value(char *env)
+{
+	int	i;
+	int	is_value;
+
+	i = 0;
+	is_value = 0;
+	while (env[i])
+	{
+		write(1, &env[i], 1);
+		if (env[i] == '=' && is_value == 0)
+		{
+			write(1, "\"", 1);
+			is_value = 1;
+		}
+		i++;
+	}
+	if (is_value == 1)
+		write(1, "\"", 1);
+	write(1, "\n", 1);
+}
+
+
 void	print_export(char **export, int	count)
 {
 	int	i;
@@ -107,9 +132,23 @@ void	print_export(char **export, int	count)
 	while (i < count)
 	{
 		lp_putstr_fd("export ", 1);
-		lp_putendl_fd(export[i], 1);
+		print_key_value(export[i]);
 		i++;
 	}
+}
+
+bool	got_value(char *key)
+{
+	int	i;
+
+	i = 0;
+	while (key[i])
+	{
+		if (key[i] == '=')
+			return (true);
+		i++;
+	}
+	return (false);
 }
 
 
@@ -131,11 +170,17 @@ int	builtin_export(char **args)
 		print_export(env_cpy, count);
 		return (lp_free_strtab(env_cpy, count), EXIT_SUCCESS);
 	}
-	i = 0;
+	i = 1;
 	while (i < ac)
 	{
 		if (check_key(args[i]) && !is_in_env(args[i], env_cpy))
 		{
+			if (!array_pushfront(&get_app_data()->env, &args[i]));
+				return (lp_free_strtab(env_cpy, count), EXIT_FAILURE);
+		}
+		if (is_in_env(args[i], env_cpy) && got_value(args[i]))
+		{
+			array_remove(get_app_data()->env, get_env_index(args[i]));
 			if (!array_pushfront(&get_app_data()->env, &args[i]));
 				return (lp_free_strtab(env_cpy, count), EXIT_FAILURE);
 		}
