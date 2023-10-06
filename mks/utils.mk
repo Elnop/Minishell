@@ -1,4 +1,4 @@
-UTILS_FILES = array_handlers is_operator get_left_length get_app_data add_to_garbage has_quote
+UTILS_FILES = array_handlers is_operator get_left_length get_app_data add_to_garbage has_quote ft_strcmp
 
 UTILS_SRCS_DIR = utils
 

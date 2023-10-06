@@ -69,6 +69,16 @@ int		builtin_echo(char **args);
 int		get_env_index(char *to_find);
 char	*cat_key_value(char *key, char *value);
 bool	checking_relative_path(char	*str);
+bool	is_alpha_num(char c);
+bool	check_key(char *key);
+int		env_cmp(char *env, char *key);
+bool	is_in_env(char	*key, char **dup_env);
+void	swap_str(char **a, char **b);
+void	ft_sort_str_tab(char **tab, int count);
+void	print_key_value(char *env);
+void	print_export(char **export, int	count);
+bool	got_value(char *key);
+char	*get_key(char *args);
 
 // ---- ./DEBUG
 void	print_str_array(char **words_list);
@@ -130,5 +140,6 @@ size_t	is_operator(char *str);
 size_t	get_left_length(char **words, char *limiter);
 void	*add_to_garbage(void *ptr, t_garbage_item_type type);
 bool	has_quote(char *str);
+int 	ft_strcmp(char *s1, char *s2);
 
 #endif
