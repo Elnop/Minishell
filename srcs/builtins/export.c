@@ -3,7 +3,7 @@
 
 bool	is_alpha_num(char c)
 {
-	if (c >= '0' && c <= '9' || c >= 'a' && c <= 'z' || c >= 'A' || c <= 'Z')
+	if (c >= '0' && c <= '9' || c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z')
 		return (true);
 	else
 		return (false);
@@ -14,12 +14,18 @@ bool	check_key(char *key)
 	int	i;
 
 	if (key[0] >= '0' && key[0] <= '9')
+	{
+		lp_dprintf(2, "minishell: export: `%s': not a valid identifier\n", key);
 		return (false);
+	}
 	i = 0;
 	while (key[i] && key[i] != '=')
 	{
 		if (!is_alpha_num(key[i]))
+		{
+			lp_dprintf(2, "minishell: export: `%s': not a valid identifier\n", key);
 			return (false);
+		}
 		i++;
 	}
 	return (true);
@@ -30,7 +36,7 @@ int	env_cmp(char *env, char *key)
 	int	i;
 
 	i = 0;
-	while (env[i] && env[i + 1] != '=' && key[i + 1] != '=' && env[i] && key[i])
+	while (env[i] && key[i] && env[i + 1] != '=' && key[i + 1] != '=' && key[i] == env[i])
 		i++;
 	return (env[i] - key[i]);
 }
@@ -151,6 +157,28 @@ bool	got_value(char *key)
 	return (false);
 }
 
+char	*get_key(char *args)
+{
+	char *key;
+	int	i;
+	int	j;
+
+	i = 0;
+	while (args[i] && args[i] != '=')
+		i++;
+	key = malloc(sizeof(char) * i + 1);
+	if (!key)
+		return (NULL);
+	j = 0;
+	while (j < i)
+	{
+		key[j] = args[j];
+		j++;
+	}
+	key[j] = '\0';
+	return (key);
+}
+
 
 int	builtin_export(char **args)
 {
@@ -158,6 +186,7 @@ int	builtin_export(char **args)
 	size_t	ac;
 	int	count;
 	size_t	i;
+	char	*key;
 
 	ac = lp_strtab_size(args);
 	env_cpy = array_to_strtab(get_app_data()->env);
@@ -173,16 +202,24 @@ int	builtin_export(char **args)
 	i = 1;
 	while (i < ac)
 	{
+	//	dprintf(2, "yo\n");
 		if (check_key(args[i]) && !is_in_env(args[i], env_cpy))
 		{
-			if (!array_pushfront(&get_app_data()->env, &args[i]));
-				return (lp_free_strtab(env_cpy, count), EXIT_FAILURE);
+			array_pushfront(&get_app_data()->env, &args[i]);
+		//	{
+		//		dprintf(2, "yaaaa\n");
+		//		return (lp_free_strtab(env_cpy, count), EXIT_FAILURE);
+		//	}
 		}
 		if (is_in_env(args[i], env_cpy) && got_value(args[i]))
 		{
-			array_remove(get_app_data()->env, get_env_index(args[i]));
-			if (!array_pushfront(&get_app_data()->env, &args[i]));
-				return (lp_free_strtab(env_cpy, count), EXIT_FAILURE);
+			key = get_key(args[i]);
+			if (!key)
+				return (false);
+			array_remove(get_app_data()->env, get_env_index(key));
+			array_pushfront(&get_app_data()->env, &args[i]);
+//				return (lp_free_strtab(env_cpy, count), free(key), EXIT_FAILURE);
+			free(key);
 		}
 		i++;
 	}
