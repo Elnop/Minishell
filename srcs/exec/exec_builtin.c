@@ -28,6 +28,8 @@ static t_buildin_func	get_builtin_function(char *cmd_name)
 		return (builtin_export);
 	if (!lp_strncmp(cmd_name, "pwd", 4))
 		return (builtin_pwd);
+	if (!lp_strncmp(cmd_name, "unset", 6))
+		return (builtin_unset);
 	else
 		return (NULL);
 }

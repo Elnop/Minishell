@@ -17,7 +17,7 @@ int	get_env_index(char *to_find)
 
 char	*cat_key_value(char *key, char *value)
 {
-	char *var_env;
+	char	*var_env;
 
 	var_env = lp_strdup(key);
 	if (!var_env)
