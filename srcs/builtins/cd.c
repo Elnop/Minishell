@@ -23,8 +23,9 @@ bool	push_pwd(int index_pwd, int index_opwd, char *pwd)
 		array_remove(get_app_data()->env, index_opwd);
 		if (!array_pushfront(&get_app_data()->env, &old_pwd))
 			return (free(c_pwd), false);
+		free(old_pwd);
 	}
-	return (free(c_pwd), free(old_pwd), true);
+	return (free(c_pwd), true);
 }
 
 bool	set_pwds(char *pwd)
