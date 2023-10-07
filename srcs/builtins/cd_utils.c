@@ -2,7 +2,7 @@
 
 int	get_env_index(char *to_find)
 {
-	int	i;
+	int		i;
 	const char	**env = get_app_data()->env;
 
 	i = 0;
