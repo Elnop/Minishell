@@ -19,6 +19,7 @@ bool	new_input(char **line)
 	{
 		free(*line);
 		*line = readline(BICYAN SHELL_NAME": "COLOR_OFF);
+		add_history(*line);
 	}
 	if (!*line)
 		return (false);

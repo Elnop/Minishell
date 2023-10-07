@@ -14,9 +14,7 @@ int	builtin_echo(char **args)
 {
 	int	i;
 	int	n_arg;
-	int	ac;
 
-	ac = lp_strtab_size(args);
 	i = 1;
 	n_arg = 0;
 	if (count_args(args) > 1)

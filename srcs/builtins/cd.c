@@ -31,7 +31,6 @@ bool	set_pwds(char *pwd)
 {
 	int		index_pwd;
 	int		index_opwd;
-	char	*old_pwd;
 
 	index_pwd = get_env_index("PWD=");
 	index_opwd = get_env_index("OLDPWD=");
@@ -63,6 +62,7 @@ int	relative_path(char *args)
 			return (lp_putendl_fd("minishell: cd: no such file or directory"
 					, 2));
 	}
+	return (EXIT_FAILURE);
 }
 
 int	builtin_cd(char **args)

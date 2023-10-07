@@ -3,7 +3,8 @@
 
 bool	is_alpha_num(char c)
 {
-	if (c >= '0' && c <= '9' || c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z')
+	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'))
 		return (true);
 	else
 		return (false);
@@ -13,7 +14,7 @@ bool	check_key(char *key)
 {
 	int	i;
 
-	if (key[0] >= '0' && key[0] <= '9' || key[0] == '=')
+	if ((key[0] >= '0' && key[0] <= '9') || key[0] == '=')
 	{
 		lp_dprintf(2, "minishell: export: `%s': not a valid identifier\n", key);
 		return (false);
@@ -45,7 +46,7 @@ int	env_cmp(char *env, char *key)
 
 bool	is_in_env(char	*key, char **dup_env)
 {
-	char	i;
+	int	i;
 
 	i = 0;
 	while (dup_env[i])
