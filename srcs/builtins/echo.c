@@ -29,6 +29,8 @@ int	builtin_echo(char **args)
 			lp_putstr_fd(args[i], 1);
 			if (args[i + 1] && args[i][0] == '\0')
 				write(1, " ", 1);
+			if (args[i + 1])
+				write(1, " ", 1);
 			i++;
 		}
 	}
