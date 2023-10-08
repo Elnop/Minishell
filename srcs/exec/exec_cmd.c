@@ -43,10 +43,10 @@ static pid_t	normal_exec(t_cmd_data data)
 		(data.close_fd != -1 && close(data.close_fd));
 		cmd_args = array_to_strtab(data.args);
 		cmd_env = array_to_strtab(get_app_data()->env);
+		signal(SIGQUIT, SIG_DFL);
 		execve(cmd_path, cmd_args, cmd_env);
 	}
-	free(cmd_path);
-	return (child_pid);
+	return (free(cmd_path), child_pid);
 }
 
 pid_t	exec_cmd(t_cmd_data *pdata)

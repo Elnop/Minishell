@@ -14,6 +14,7 @@
 
 bool	new_input(char **line)
 {
+	signal_handler(0);
 	*line = readline(BICYAN SHELL_NAME": "COLOR_OFF);
 	while (*line && !**line)
 	{
@@ -33,6 +34,7 @@ void	start(void)
 
 	while (new_input(&line))
 	{
+
 		first_node = make_tree(line);
 		if (first_node)
 		{

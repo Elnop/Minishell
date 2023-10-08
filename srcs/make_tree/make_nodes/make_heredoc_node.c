@@ -44,11 +44,13 @@ char	*get_heredoc_buffer(char *limiter, bool need_ex)
 		return (NULL);
 	if (!buff || !lp_strcat(&limiter, "\n"))
 		return (free(buff), NULL);
+	signal_handler(2);
 	line = readline("document-ici>");
 	if (!lp_strcat(&line, "\n"))
 		return (free(buff), free(line), free(limiter), NULL);
 	while (buff && line && lp_strncmp(line, limiter, lp_strlen(line)))
 	{
+		
 		if (need_ex)
 			line = expand_parameters(line);
 		if (!lp_strcat(&buff, line))
@@ -80,6 +82,8 @@ t_node	*make_heredoc_node(char **words)
 	((t_heredoc_data *)p_node->data)->buff = get_heredoc_buffer(
 			str_unquote(words[i + 1]),
 			!(lp_strchr(words[i + 1], '"') || lp_strchr(words[i + 1], '\'')));
+	if (!((t_heredoc_data *)p_node->data)->buff)
+		return (free(p_node->data), free(p_node), NULL);
 	array_remove((t_array)words, i);
 	array_remove((t_array)words, i);
 	add_to_garbage(p_node, GRBG_TREE_NODE);

@@ -38,6 +38,7 @@ typedef struct s_app
 	bool	debug;
 	char	lastcode;
 	t_array	garbage;
+	bool	here_sigint;
 }	t_app;
 
 typedef enum e_garbage_item_type
@@ -144,5 +145,6 @@ size_t	get_left_length(char **words, char *limiter);
 void	*add_to_garbage(void *ptr, t_garbage_item_type type);
 bool	has_quote(char *str);
 int		ft_strcmp(char *s1, char *s2);
+void	signal_handler(int mode);
 
 #endif

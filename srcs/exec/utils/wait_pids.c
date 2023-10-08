@@ -19,6 +19,7 @@ int	wait_pids(t_array *pids)
 
 	status = 0;
 	i = 0;
+	signal_handler(1);
 	if (!pids)
 		return (get_app_data()->lastcode);
 	while (i < array_size(pids))
