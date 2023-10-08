@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 08:48:19 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/30 11:33:39 by elnop            ###   ########.fr       */
+/*   Updated: 2023/10/07 23:44:22 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ enum e_node_type
 	CMD_NODE,
 	AND_NODE,
 	OR_NODE,
-	PIPE_NODE,
-	REDIR_NODE
+	PIPELINE_NODE,
+	REDIR_NODE,
+	HEREDOC_NODE,
 };
 
 typedef enum e_logical_operators
@@ -63,5 +64,10 @@ typedef struct s_redir_data {
 	char			*file_name;
 	t_node			*next;
 }	t_redir_data;
+
+typedef struct s_heredoc_data {
+	char			*buff;
+	t_node			*next;
+}	t_heredoc_data;
 
 #endif

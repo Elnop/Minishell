@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 02:01:58 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/05 15:24:23 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/06 21:43:06 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,32 @@ bool	open_and_replace(t_redir_data redir, t_node *p_cmd)
 	return (true);
 }
 
-bool	open_redirs(t_node *node, t_node *p_cmd)
+bool	is_last_heredoc(t_node *node)
+{
+	while (node && node->type != CMD_NODE)
+	{
+		if (node->type == HEREDOC_NODE)
+			return (false);
+		node = ((t_redir_data *)node->data)->next;
+	}
+	return (true);
+}
+
+bool	open_redirs(t_node *node, t_node *p_cmd, t_array *pids)
 {
 	t_redir_data	*redir;
 
 	while (node && node->type != CMD_NODE)
 	{
+		if (node->type == HEREDOC_NODE)
+		{
+			if (p_cmd && is_last_heredoc(((t_heredoc_data *)node->data)->next)
+				&& !array_pushback(pids, (pid_t []){pipe_heredoc_and_cmd(
+						*(t_heredoc_data *)node->data, p_cmd->data)}))
+				return (false);
+			node = ((t_heredoc_data *)node->data)->next;
+			continue ;
+		}
 		redir = (t_redir_data *)node->data;
 		if (!expand_unquote(&redir->file_name))
 			return (false);
@@ -85,5 +105,7 @@ bool	open_redirs(t_node *node, t_node *p_cmd)
 			return (false);
 		node = redir->next;
 	}
+	if (!node)
+		return (false);
 	return (true);
 }

@@ -24,6 +24,7 @@ t_node	*make_tree(char *line)
 		return (lp_dprintf(2, "Tokenify error\n"), NULL);
 	if (!*(char **)words)
 		return (NULL);
+	// check sig ctr c dans appdata return NULL
 	first_node = words_to_tree(words);
 	if (!first_node)
 		return ((void)lp_dprintf(2, "Syntux error\n"), NULL);

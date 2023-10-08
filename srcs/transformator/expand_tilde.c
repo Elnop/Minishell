@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:15:35 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/29 02:32:27 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/07 23:04:18 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*expand_tilde(char *str)
 		return (str);
 	buff = array_new(lp_strlen(str), sizeof(char), NULL, NULL);
 	if (!expand_tilde_while(str, &buff))
-		return (array_free(buff), NULL);
+		return (array_free(buff), str);
 	if (!array_pushback(&buff, "\0"))
 		return (NULL);
 	out = lp_strdup(buff);

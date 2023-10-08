@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 07:48:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/03 19:39:35 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/05 20:00:32 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ bool	expand_split_push(t_array *p_splited, char	**p_str)
 		subword = expand_parameters(get_subword(p_str, "\""));
 		(*p_str)++;
 		lp_strcat((char **)*p_splited + array_size(*p_splited) - 1, subword);
+		free(subword);
 	}
 	else
 		expand_split_push_unquoted(p_splited, p_str);

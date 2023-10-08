@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/28 13:11:18 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:43:07 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ bool	new_input(char **line)
 	}
 	if (!*line)
 		return (false);
+	add_history(*line);
 	return (true);
 }
 

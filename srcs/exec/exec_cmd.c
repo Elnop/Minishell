@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:13:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/03 15:44:30 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/07 23:00:55 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ pid_t	exec_cmd(t_cmd_data *pdata)
 	pid_t	child_pid;
 
 	if (!transform_list(&pdata->args))
-		return (lp_dprintf(2, RED"Error\n"COLOR_OFF), -1);
+		return (lp_dprintf(2, RED"Error expand\n"COLOR_OFF), -1);
 	child_pid = exec_builtin(*(char **)pdata->args, *pdata);
 	if (!child_pid)
 		child_pid = normal_exec(*pdata);

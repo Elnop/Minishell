@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 03:52:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/04 15:34:33 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/05 18:25:33 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ t_node	*make_cmd_node(char **words)
 
 	if (words && *words && has_redir_operator(words))
 		return (make_redir_node(words));
+	if (words && *words && has_heredoc_operator(words))
+		return (make_heredoc_node(words));
 	if (!words || !*words || is_operator(*words))
 		return (NULL);
 	node = (t_node *)malloc(sizeof(t_node));

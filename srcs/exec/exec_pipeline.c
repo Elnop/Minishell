@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:22:18 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/05 15:25:09 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/06 05:15:15 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,21 @@
 static t_node	*get_cmd(t_node *node)
 {
 	while (node && node->type != CMD_NODE)
-		node = ((t_redir_data *)node->data)->next;
+	{
+		if (node->type == HEREDOC_NODE)
+			node = ((t_heredoc_data *)node->data)->next;
+		else
+			node = ((t_redir_data *)node->data)->next;
+	}
 	return (node);
+}
+
+static void	close_fds(t_cmd_data cmd_data)
+{
+	if (cmd_data.fd_in != -1)
+		close(cmd_data.fd_in);
+	if (cmd_data.fd_out != -1)
+		close(cmd_data.fd_out);
 }
 
 t_array	exec_pipeline(t_array nodes)
@@ -24,23 +37,25 @@ t_array	exec_pipeline(t_array nodes)
 	t_array		pids;
 	int			pipe_fds[2];
 	size_t		i;
-	t_node		*p_cmd_node;
+	t_node		*pcmd;
 
 	pids = add_to_garbage(array_new(10, sizeof(pid_t), NULL, NULL), GRBG_ARRAY);
 	i = 0;
 	while (pids && i < array_size(nodes))
 	{
-		p_cmd_node = get_cmd(((t_node **)nodes)[i]);
-		if (!pipe_cmds(p_cmd_node, pipe_fds, i, array_size(nodes)))
-			return (NULL);
-		if (!open_redirs(((t_node **)nodes)[i], p_cmd_node))
-			return (NULL);
-		if (!p_cmd_node && ++i)
+		pcmd = get_cmd(((t_node **)nodes)[i]);
+		if (!pipe_cmds(pcmd, pipe_fds, i, array_size(nodes)))
+			return (array_free(pids), NULL);
+		if (!open_redirs(((t_node **)nodes)[i], pcmd, &pids) && pcmd && ++i)
+		{
+			close_fds(*(t_cmd_data *)pcmd->data);
 			continue ;
-		array_pushback(&pids,
-			(pid_t []){exec_cmd(((t_cmd_data *)p_cmd_node->data))});
-		if (p_cmd_node && ((t_cmd_data *)p_cmd_node->data)->fd_in > -1)
-			close(((t_cmd_data *)p_cmd_node->data)->fd_in);
+		}
+		if (pcmd && !array_pushback(&pids,
+				(pid_t []){exec_cmd((t_cmd_data *)pcmd->data)}))
+			continue ;
+		if (pcmd && ((t_cmd_data *)pcmd->data)->fd_in > -1)
+			close(((t_cmd_data *)pcmd->data)->fd_in);
 		i++;
 	}
 	return (pids);

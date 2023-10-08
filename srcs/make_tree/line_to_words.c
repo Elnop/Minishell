@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:17:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/27 19:10:27 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:43:58 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,25 @@
 
 static long	count_quoted(char *line)
 {
-	size_t	wl;
-
-	wl = 0;
-	if (line[wl] == '\'')
+	if (*line == '\'')
 	{
-		wl++;
-		while (line[wl] && line[wl] != '\'')
-			wl++;
-		if (!line[wl])
+		if (!lp_strchr(line + 1, '\''))
 			return (-1);
-		wl++;
+		return (lp_strchr(line + 1, '\'') - line + 1);
 	}
-	else if (line[wl] == '"')
+	else if (*line == '"')
 	{
-		wl++;
-		while (line[wl] && line[wl] != '"')
-			wl++;
-		if (!line[wl])
+		if (!lp_strchr(line + 1, '"'))
 			return (-1);
-		wl++;
+		return (lp_strchr(line + 1, '"') - line + 1);
 	}
-	return (wl);
+	else if (*line == '(')
+	{
+		if (!lp_strchr(line + 1, ')'))
+			return (-1);
+		return (lp_strchr(line + 1, ')') - line + 1);
+	}
+	return (0);
 }
 
 static char	*get_next_word(char *line)

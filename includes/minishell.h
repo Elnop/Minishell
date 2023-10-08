@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/03 21:24:08 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/07 22:16:02 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef enum e_garbage_item_type
 
 typedef struct s_garbage_item
 {
-	void				*ptr;
+	void				**ptr;
 	t_garbage_item_type	type;
 }	t_garbage_item;
 
@@ -60,6 +60,25 @@ bool	clean_garbage(void);
 
 // ---- ./BUILTINS
 int		builtin_env(char **args);
+int		builtin_cd(char **args);
+int		builtin_exit(char **args);
+int		builtin_export(char **args);
+int		builtin_pwd(char **args);
+int		builtin_unset(char **str);
+int		builtin_echo(char **args);
+int		get_env_index(char *to_find);
+char	*cat_key_value(char *key, char *value);
+bool	checking_relative_path(char	*str);
+bool	is_alpha_num(char c);
+bool	check_key(char *key);
+int		env_cmp(char *env, char *key);
+bool	is_in_env(char	*key, char **dup_env);
+void	swap_str(char **a, char **b);
+void	ft_sort_str_tab(char **tab, int count);
+void	print_key_value(char *env);
+void	print_export(char **exp, int count);
+bool	got_value(char *key);
+char	*get_key(char *args);
 
 // ---- ./DEBUG
 void	print_str_array(char **words_list);
@@ -78,11 +97,12 @@ t_array	exec_pipeline(t_array nodes);
 int		exec_and(t_node_links data);
 int		exec_or(t_node_links data);
 // ---- ./EXEC_UTILS
-bool	open_redirs(t_node *node, t_node *p_cmd);
+bool	open_redirs(t_node *node, t_node *p_cmd, t_array *pids_list);
 char	*get_cmd_path(char *name);
 int		wait_pids(t_array *pids);
 void	dup_fds(int fd_in, int fd_out);
 bool	pipe_cmds(t_node *node, int pipe_fds[2], size_t i, size_t cmds_nb);
+pid_t	pipe_heredoc_and_cmd(t_heredoc_data heredoc_data, t_cmd_data *p_cmd);
 
 // ---- ./TRANSFORMATOR
 char	*expand_parameters(char *str);
@@ -104,6 +124,7 @@ t_node	*make_cmd_node(char **words);
 t_node	*make_or_node(char **words);
 t_node	*make_pipeline_node(char **words);
 t_node	*make_redir_node(char **words);
+t_node	*make_heredoc_node(char **words);
 // ---- ./MAKE_TREE_UTILS
 bool	is_redir_operator(char *word);
 bool	has_redir_operator(char **words);
@@ -111,6 +132,7 @@ void	destroy_cmd(void *pelem);
 void	destroy_pipeline(void *pelem);
 void	destroy_tree_node(void *pelem);
 void	redir_data_destructor(void	*pelem);
+bool	has_heredoc_operator(char **words);
 
 // ---- ./UTILS
 t_app	*get_app_data(void);
@@ -121,5 +143,6 @@ size_t	is_operator(char *str);
 size_t	get_left_length(char **words, char *limiter);
 void	*add_to_garbage(void *ptr, t_garbage_item_type type);
 bool	has_quote(char *str);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

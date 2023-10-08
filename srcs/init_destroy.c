@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 05:25:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/03 21:46:04 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/07 05:01:16 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool	init_app(int ac, char **av, char **env)
 	app->env = strtab_to_array(env);
 	if (!app->env)
 		return (false);
-	app->garbage = array_new(10, sizeof(t_garbage_item), NULL, garbage_destroy);
+	app->garbage = array_new(10, sizeof(t_garbage_item), NULL, NULL);
 	if (!app->garbage)
 		return (array_free(app->env), false);
 	if (ac > 1 && !lp_strncmp(av[1], "--debug", 7))
@@ -62,15 +62,18 @@ void	destroy_app(void)
 	t_app	*app;
 
 	app = get_app_data();
+	array_header(app->garbage)->destroy_elem = garbage_destroy;
 	array_free(app->garbage);
 	array_free(app->env);
 }
 
 bool	clean_garbage(void)
 {
+	array_header(get_app_data()->garbage)
+	->destroy_elem = garbage_destroy;
 	array_free(get_app_data()->garbage);
 	(get_app_data()->garbage) = array_new(10, sizeof(t_garbage_item), NULL,
-			garbage_destroy);
+			NULL);
 	if (!get_app_data()->garbage)
 		return (false);
 	return (true);

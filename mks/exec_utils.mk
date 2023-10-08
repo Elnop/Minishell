@@ -1,4 +1,4 @@
-EXEC_UTILS_FILES = get_cmd_path wait_pids dup_fds pipe_cmds open_redirs
+EXEC_UTILS_FILES = get_cmd_path wait_pids dup_fds pipe_cmds open_redirs pipe_heredoc_and_cmd
 
 EXEC_UTILS_SRCS_DIR = exec
 EXEC_UTILS_SRCS_SUB_DIR = utils

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elnop <elnop@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 10:48:36 by elnop             #+#    #+#             */
-/*   Updated: 2023/09/30 10:52:00 by elnop            ###   ########.fr       */
+/*   Updated: 2023/10/05 17:08:04 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ bool	has_redir_operator(char **words)
 	while (*words && !is_operator(*words))
 		words++;
 	if (*words && is_redir_operator(*words))
+		return (true);
+	return (false);
+}
+
+bool	has_heredoc_operator(char **words)
+{
+	while (*words && !is_operator(*words))
+		words++;
+	if (*words && !lp_strncmp(*words, "<<", 3))
 		return (true);
 	return (false);
 }

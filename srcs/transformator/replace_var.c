@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 23:06:42 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/29 02:28:49 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/05 20:10:40 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	is_end_of_var(char *str)
 {
 	return (!str || !*str || *str == '$' || is_operator(str) || *str == '"'
-		|| lp_strchr(SPACERS, *str));
+		|| *str == '\'' || lp_strchr(SPACERS, *str));
 }
 
 static char	*get_env_var_name(char *str)
@@ -37,7 +37,8 @@ char	*get_env_var_value(char *var_name)
 		return (NULL);
 	while (*env)
 	{
-		if (!lp_strncmp(*env, var_name, lp_strlen(var_name)))
+		if (!lp_strncmp(*env, var_name, lp_strlen(var_name))
+			&& (*env)[lp_strlen(var_name)] == '=')
 			return (
 				lp_substr(*env, lp_strlen(var_name) + 1,
 					lp_strlen(*env) - lp_strlen(var_name) - 1)

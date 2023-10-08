@@ -6,11 +6,21 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 07:10:19 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/04 15:51:18 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/07 23:40:28 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+void	heredoc_data_destructor(void	*pelem)
+{
+	t_heredoc_data	*data;
+
+	data = (t_heredoc_data *)(*(t_node **)pelem)->data;
+	free(data->buff);
+	free(data);
+	free(*(t_node **)pelem);
+}
 
 void	redir_data_destructor(void	*pelem)
 {
@@ -42,7 +52,7 @@ void	destroy_tree_node(void *pelem)
 {
 	if ((*(t_node **)pelem)->type == CMD_NODE)
 		destroy_cmd(pelem);
-	else if ((*(t_node **)pelem)->type == PIPE_NODE)
+	else if ((*(t_node **)pelem)->type == PIPELINE_NODE)
 		destroy_pipeline(pelem);
 	else if ((*(t_node **)pelem)->type == AND_NODE
 		|| (*(t_node **)pelem)->type == OR_NODE)
@@ -52,4 +62,6 @@ void	destroy_tree_node(void *pelem)
 	}
 	else if ((*(t_node **)pelem)->type == REDIR_NODE)
 		redir_data_destructor(pelem);
+	else if ((*(t_node **)pelem)->type == HEREDOC_NODE)
+		heredoc_data_destructor(pelem);
 }

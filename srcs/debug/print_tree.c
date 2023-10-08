@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 01:23:05 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/04 15:29:26 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/07 23:40:28 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ int	print_redir(t_redir_data data)
 
 int	print_tree(t_node node)
 {
-	if (node.type == PIPE_NODE)
+	lp_printf("====> PRINT TREE <====\n");
+	if (node.type == PIPELINE_NODE)
 		return (print_pipeline((t_array)node.data));
 	if (node.type == REDIR_NODE)
 		return (print_redir(*(t_redir_data *)node.data));
@@ -88,5 +89,16 @@ int	print_tree(t_node node)
 		return (print_and(*(t_node_links *)node.data));
 	if (node.type == OR_NODE)
 		return (print_or(*(t_node_links *)node.data));
+	if (node.type == HEREDOC_NODE)
+	{
+		lp_printf(RED"====> HERE_DOC <====\n"COLOR_OFF);
+		lp_printf(RED"buffer : %s\n"COLOR_OFF,
+			(*(t_heredoc_data *)node.data).buff);
+		lp_printf(RED"↓↓↓ next ↓↓↓\n"COLOR_OFF);
+		if ((*(t_heredoc_data *)node.data).next)
+			print_tree(*(*(t_heredoc_data *)node.data).next);
+		else
+			lp_printf(RED"NULL\n"COLOR_OFF);
+	}
 	return (1);
 }

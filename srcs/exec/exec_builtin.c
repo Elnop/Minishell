@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 21:51:44 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/03 22:33:49 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/07 22:10:29 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ static t_buildin_func	get_builtin_function(char *cmd_name)
 {
 	if (!lp_strncmp(cmd_name, "env", 4))
 		return (builtin_env);
+	if (!lp_strncmp(cmd_name, "cd", 3))
+		return (builtin_cd);
+	if (!lp_strncmp(cmd_name, "exit", 5))
+		return (builtin_exit);
+	if (!lp_strncmp(cmd_name, "echo", 5))
+		return (builtin_echo);
+	if (!lp_strncmp(cmd_name, "export", 7))
+		return (builtin_export);
+	if (!lp_strncmp(cmd_name, "pwd", 4))
+		return (builtin_pwd);
+	if (!lp_strncmp(cmd_name, "unset", 6))
+		return (builtin_unset);
 	else
 		return (NULL);
 }
