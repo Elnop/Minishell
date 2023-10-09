@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signal.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tschecro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 20:57:24 by tschecro          #+#    #+#             */
+/*   Updated: 2023/10/09 20:57:58 by tschecro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 void	handler_prompt(int sig)
@@ -18,16 +30,13 @@ void	handler_exec(int sig)
 		rl_on_new_line();
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
-		//rl_redisplay();
 		get_app_data()->lastcode = sig + 128;
-
 	}
 	else if (sig == SIGQUIT)
 	{
 		rl_on_new_line();
 		write(1, "Quit\n", 5);
 		rl_replace_line("", 0);
-		//rl_redisplay();
 		get_app_data()->lastcode = sig + 128;
 	}
 }
@@ -46,7 +55,6 @@ void	handler_heredoc(int sig)
 		clean_garbage();
 	}
 }
-
 
 void	signal_handler(int mode)
 {

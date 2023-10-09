@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tschecro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 20:56:17 by tschecro          #+#    #+#             */
+/*   Updated: 2023/10/09 20:56:20 by tschecro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 bool	arg_is_digit(char *arg)
@@ -39,9 +51,10 @@ int	builtin_exit(char **args)
 	if (ac > 2)
 	{
 		lp_putstr_fd("minishell : exit : too many arguments\n", STDERR_FILENO);
+		get_app_data()->exit = true;
 		return (EXIT_FAILURE);
 	}
 	test = get_exit_code(args);
-	printf("lavaleur de retour %d\n", test);
-	return (get_exit_code(args));
+	get_app_data()->exit = true;
+	return (test);
 }
