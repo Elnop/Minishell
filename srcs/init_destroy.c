@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 05:25:00 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/07 05:01:16 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:50:39 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ bool	init_app(int ac, char **av, char **env)
 	t_app	*app;
 
 	app = get_app_data();
-	app->save_stdin = dup(0);
-	app->save_stdout = dup(1);
+	app->s_in = dup(0);
+	app->s_out = dup(1);
 	app->env = strtab_to_array(env);
 	if (!app->env)
 		return (false);
@@ -67,6 +67,8 @@ void	destroy_app(void)
 	array_header(app->garbage)->destroy_elem = garbage_destroy;
 	array_free(app->garbage);
 	array_free(app->env);
+	close(get_app_data()->s_in);
+	close(get_app_data()->s_out);
 }
 
 bool	clean_garbage(void)

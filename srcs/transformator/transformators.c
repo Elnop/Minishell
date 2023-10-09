@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:34:08 by lperroti          #+#    #+#             */
-/*   Updated: 2023/09/29 02:38:37 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:24:24 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ char	*expand_unquote(char **p_str)
 		lp_strcat(&out, subword);
 		free(subword);
 	}
-	free(to_free);
 	*p_str = out;
-	return (out);
+	return (free(to_free), out);
 }
 
 t_array	expand_split_str(char *str)

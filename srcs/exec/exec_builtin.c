@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 21:51:44 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/07 22:10:29 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:50:39 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static void	child_or_not(t_cmd_data data, char **args, t_buildin_func run_b)
 	code = get_app_data()->lastcode;
 	if (data.is_piped)
 	{
+		close(get_app_data()->s_in);
+		close(get_app_data()->s_out);
 		lp_free_strtab(args, lp_strtab_size(args));
 		destroy_app();
 		exit(code);

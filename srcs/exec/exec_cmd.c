@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:13:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/07 23:00:55 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:51:20 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	close_fds(t_cmd_data cmd_data)
 
 static pid_t	normal_exec(t_cmd_data data)
 {
-	pid_t	child_pid;
+	pid_t	c_pid;
 	char	*cmd_path;
 	char	**cmd_args;
 	char	**cmd_env;
@@ -36,8 +36,8 @@ static pid_t	normal_exec(t_cmd_data data)
 		get_app_data()->lastcode = 127;
 		return (-1);
 	}
-	child_pid = fork();
-	if (!child_pid)
+	c_pid = fork();
+	if (!c_pid && !close(get_app_data()->s_in) && !close(get_app_data()->s_out))
 	{
 		dup_fds(data.fd_in, data.fd_out);
 		(data.close_fd != -1 && close(data.close_fd));
@@ -46,7 +46,7 @@ static pid_t	normal_exec(t_cmd_data data)
 		signal(SIGQUIT, SIG_DFL);
 		execve(cmd_path, cmd_args, cmd_env);
 	}
-	return (free(cmd_path), child_pid);
+	return (free(cmd_path), c_pid);
 }
 
 pid_t	exec_cmd(t_cmd_data *pdata)

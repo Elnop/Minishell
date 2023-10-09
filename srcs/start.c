@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/07 21:43:07 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:50:39 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	start(void)
 	char	*line;
 	t_node	*first_node;
 
-	while (new_input(&line))
+	while (!get_app_data()->exit && new_input(&line))
 	{
 		first_node = make_tree(line);
 		if (get_app_data()->here_sigint)
 		{
-			dup2(get_app_data()->save_stdin, 0);
-			dup2(get_app_data()->save_stdout, 1);
+			dup2(get_app_data()->s_in, 0);
+			dup2(get_app_data()->s_out, 1);
 			get_app_data()->here_sigint = 0;
 		}
 		else if (first_node)

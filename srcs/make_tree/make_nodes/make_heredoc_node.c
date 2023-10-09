@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:15:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/09 18:58:45 by tschecro         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:29:26 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,23 @@ char	*get_heredoc_buffer(char *limiter, bool need_ex)
 	char	*buff;
 	char	*line;
 
-	if (!limiter)
-		return (NULL);
 	buff = lp_strdup("");
-	if (!buff)
+	if (!buff || (!limiter && (free(buff), 1)))
 		return (NULL);
-	if (!buff || !lp_strcat(&limiter, "\n"))
+	if ((signal_handler(2), 0) || !buff || !lp_strcat(&limiter, "\n"))
 		return (free(buff), NULL);
-	signal_handler(2);
 	line = readline("document-ici>");
 	if (!lp_strcat(&line, "\n"))
 		return (free(buff), free(line), free(limiter), NULL);
 	while (buff && line && lp_strncmp(line, limiter, lp_strlen(line)))
 	{
 		if (get_app_data()->here_sigint)
-		{
 			return (free(buff), free(line), free(limiter), NULL);
-		}
 		if (need_ex)
 			line = expand_parameters(line);
-		if (!lp_strcat(&buff, line))
+		if (!lp_strcat(&buff, line) || (free(line), 0))
 			return (free(buff), free(line), free(limiter), NULL);
-		free(line);
-		line = readline("document-ici>"); // sortir pour ctrl c close stdin
+		line = readline("document-ici>");
 		if (line && !lp_strcat(&line, "\n"))
 			return (free(buff), free(line), free(limiter), NULL);
 	}
