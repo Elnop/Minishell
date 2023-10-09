@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 01:08:37 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/07 21:09:05 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/09 21:43:33 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ static char	*test_env_paths(char *name)
 
 char	*get_cmd_path(char *name)
 {
-	if (!name || !*name)
+	if (!name || !*name || !lp_strncmp(name, ".", 2)
+		|| !lp_strncmp(name, "/", 2) || !lp_strncmp(name, "./", 3))
 		return (NULL);
-	if (!access(name, F_OK))
+	if (lp_strlen(name) > 2 && !access(name, F_OK))
 		return (lp_strdup(name));
 	return (test_env_paths(name));
 }
