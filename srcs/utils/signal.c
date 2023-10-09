@@ -36,9 +36,11 @@ void	handler_heredoc(int sig)
 {
 	if (sig == SIGINT)
 	{
+		get_app_data()->here_sigint = true;
+		write(2, "\nno end of file", 20);
+		close(0);
 		close(1);
 		rl_on_new_line();
-		write(2, "\nno end of file nana", 20);
 		rl_replace_line("", 0);
 		rl_redisplay();
 		clean_garbage();
@@ -60,7 +62,6 @@ void	signal_handler(int mode)
 	}
 	else if (mode == 2)
 	{
-		get_app_data()->here_sigint = true;
 		signal(SIGINT, handler_heredoc);
 		signal(SIGQUIT, SIG_IGN);
 	}

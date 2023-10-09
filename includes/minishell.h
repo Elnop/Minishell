@@ -39,6 +39,8 @@ typedef struct s_app
 	char	lastcode;
 	t_array	garbage;
 	bool	here_sigint;
+	int		save_stdin;
+	int		save_stdout;
 }	t_app;
 
 typedef enum e_garbage_item_type

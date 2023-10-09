@@ -46,6 +46,8 @@ bool	init_app(int ac, char **av, char **env)
 	t_app	*app;
 
 	app = get_app_data();
+	app->save_stdin = dup(0);
+	app->save_stdout = dup(1);
 	app->env = strtab_to_array(env);
 	if (!app->env)
 		return (false);

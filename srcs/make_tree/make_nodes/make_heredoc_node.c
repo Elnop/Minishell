@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:15:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/07 05:31:20 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:58:45 by tschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ char	*get_heredoc_buffer(char *limiter, bool need_ex)
 		return (free(buff), free(line), free(limiter), NULL);
 	while (buff && line && lp_strncmp(line, limiter, lp_strlen(line)))
 	{
-		
+		if (get_app_data()->here_sigint)
+		{
+			return (free(buff), free(line), free(limiter), NULL);
+		}
 		if (need_ex)
 			line = expand_parameters(line);
 		if (!lp_strcat(&buff, line))

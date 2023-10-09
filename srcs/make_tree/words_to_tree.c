@@ -36,7 +36,6 @@ t_node	*words_to_tree(char **words)
 		return (NULL);
 	next_logical_operator = has_logical_operator(words);
 	if (next_logical_operator == NO_OPERATOR)
-	
 		return (make_pipeline_node(words));
 	if (next_logical_operator == AND_OPERATOR)
 		return (make_and_node(words));

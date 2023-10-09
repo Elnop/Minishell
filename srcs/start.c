@@ -34,9 +34,14 @@ void	start(void)
 
 	while (new_input(&line))
 	{
-
 		first_node = make_tree(line);
-		if (first_node)
+		if (get_app_data()->here_sigint)
+		{
+			dup2(get_app_data()->save_stdin, 0);
+			dup2(get_app_data()->save_stdout, 1);
+			get_app_data()->here_sigint = 0;
+		}
+		else if (first_node)
 		{
 			if (get_app_data()->debug)
 				print_tree(*first_node);
