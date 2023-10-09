@@ -31,5 +31,10 @@ int	wait_pids(t_array *pids)
 		}
 		i++;
 	}
+	if (array_size(pids) == 1 && get_app_data()->sig_code)
+	{
+		get_app_data()->lastcode = get_app_data()->sig_code;
+		get_app_data()->sig_code = 0;
+	}
 	return (get_app_data()->lastcode);
 }

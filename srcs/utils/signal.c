@@ -6,7 +6,7 @@
 /*   By: tschecro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 20:57:24 by tschecro          #+#    #+#             */
-/*   Updated: 2023/10/09 20:57:58 by tschecro         ###   ########.fr       */
+/*   Updated: 2023/10/09 22:15:40 by tschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	handler_prompt(int sig)
 {
 	if (sig == SIGINT)
 	{
+		get_app_data()->sig_code = 130;
 		rl_on_new_line();
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
@@ -30,14 +31,14 @@ void	handler_exec(int sig)
 		rl_on_new_line();
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
-		get_app_data()->lastcode = sig + 128;
+		get_app_data()->sig_code = 130;
 	}
 	else if (sig == SIGQUIT)
 	{
 		rl_on_new_line();
-		write(1, "Quit\n", 5);
+		write(1, "Quit (core dumped)\n", 19);
 		rl_replace_line("", 0);
-		get_app_data()->lastcode = sig + 128;
+		get_app_data()->sig_code = 131;
 	}
 }
 
@@ -45,6 +46,7 @@ void	handler_heredoc(int sig)
 {
 	if (sig == SIGINT)
 	{
+		get_app_data()->sig_code = 130;
 		get_app_data()->here_sigint = true;
 		write(2, "\nno end of file", 20);
 		close(0);

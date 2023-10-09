@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/09 20:50:39 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/09 21:49:53 by tschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ typedef struct s_app
 	bool	exit;
 	t_array	env;
 	bool	debug;
-	char	lastcode;
+	int		lastcode;
 	t_array	garbage;
 	bool	here_sigint;
 	int		s_in;
 	int		s_out;
+	int		sig_code;
 }	t_app;
 
 typedef enum e_garbage_item_type
