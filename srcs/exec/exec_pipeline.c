@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:22:18 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/06 05:15:15 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/10 05:22:49 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_array	exec_pipeline(t_array nodes)
 	size_t		i;
 	t_node		*pcmd;
 
-	pids = add_to_garbage(array_new(10, sizeof(pid_t), NULL, NULL), GRBG_ARRAY);
+	pids = add_grb(array_new(10000, sizeof(pid_t), NULL, NULL), GRBG_ARRAY);
 	i = 0;
 	while (pids && i < array_size(nodes))
 	{

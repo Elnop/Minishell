@@ -23,7 +23,7 @@ t_node	*make_tree(char *line)
 	if (!words)
 		return (lp_dprintf(2, "Tokenify error\n"), NULL);
 	if (!*(char **)words)
-		return (NULL);
+		return (free(words), NULL);
 	first_node = words_to_tree(words);
 	array_free(words);
 	if (!first_node && !get_app_data()->here_sigint)

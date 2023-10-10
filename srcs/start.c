@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 07:42:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/09 20:50:39 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/10 05:17:34 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ bool	new_input(char **line)
 	while (*line && !**line)
 	{
 		free(*line);
+		signal_handler(0);
 		*line = readline(BICYAN SHELL_NAME": "COLOR_OFF);
 	}
 	if (!*line)

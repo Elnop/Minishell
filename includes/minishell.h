@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/09 21:49:53 by tschecro         ###   ########.fr       */
+/*   Updated: 2023/10/10 04:00:41 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	destroy_str(void *pelem);
 void	p_array_destroyer(void *pelem);
 size_t	is_operator(char *str);
 size_t	get_left_length(char **words, char *limiter);
-void	*add_to_garbage(void *ptr, t_garbage_item_type type);
+void	*add_grb(void *ptr, t_garbage_item_type type);
 bool	has_quote(char *str);
 int		ft_strcmp(char *s1, char *s2);
 void	signal_handler(int mode);
