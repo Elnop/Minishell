@@ -6,7 +6,7 @@
 /*   By: tschecro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 20:56:42 by tschecro          #+#    #+#             */
-/*   Updated: 2023/10/09 20:56:44 by tschecro         ###   ########.fr       */
+/*   Updated: 2023/10/10 03:31:09 by tschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	builtin_echo(char **args)
 	n_arg = 0;
 	if (count_args(args) > 1)
 	{
-		while (args[i] && lp_strncmp(args[i], "-n", 3) == 0)
+		while (args[i] && lp_strncmp(args[i], "-n", 2) == 0)
 		{
 			n_arg = 1;
 			i++;
