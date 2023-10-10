@@ -48,7 +48,7 @@ void	handler_heredoc(int sig)
 	{
 		get_app_data()->sig_code = 130;
 		get_app_data()->here_sigint = true;
-		write(2, "\nno end of file", 20);
+		write(2, "\nno end of file", 16);
 		close(0);
 		close(1);
 		rl_on_new_line();
