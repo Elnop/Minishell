@@ -1,6 +1,14 @@
 # Minishell
 
-## Prerequisites
+## Run
+```
+git clone --recurse-submodules git@github.com:Elnop/Minishell.git
+cd Minishell
+make
+./minishell
+```
+
+## External functions
 - [execve](http://manpagesfr.free.fr/man/man2/execve.2.html)
 - [fork](http://manpagesfr.free.fr/man/man2/fork.2.html)
 - [pipe](http://manpagesfr.free.fr/man/man2/pipe.2.html)
