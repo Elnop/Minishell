@@ -1,45 +1,15 @@
 # Minishell
 
-## Links
+## Prerequisites
+- execve [man](http://manpagesfr.free.fr/man/man2/execve.2.html)
+- fork [man](http://manpagesfr.free.fr/man/man2/fork.2.html)
+- pipe [man](http://manpagesfr.free.fr/man/man2/pipe.2.html)
+- dup [man](http://manpagesfr.free.fr/man/man2/dup.2.html)
 
 ![](assets/image1.png)
 ![](assets/image2.png)
 
 ## Posix Rules to Know
-
-### Expand
-
-<details>
-<summary> Word Expansions </summary>
-
-#### Unspecified results
-
-The '\$' character is used to introduce parameter expansion, command substitution, or arithmetic evaluation. If an unquoted '\$' is followed by a character that is not one of the following:
-* A numeric character
-* The name of one of the special parameters (see Special Parameters)
-* A valid first character of a variable name
-* A \<left-curly-bracket\> ( '\{' )
-* A \<left-parenthesis\>
-
-the result is unspecified.
-</details>
-
-<details>
-<summary> Errors </summary>
-
-ambiguous redirect
-
-```bash
-export a="file1 file2"
-ls > $a
-bash: $a: ambiguous redirect
-```
-```bash
-export a=""
-< $a cat
-bash: $a: ambiguous redirect
-```
-</details>
 
 ## Valgrind flags
 
