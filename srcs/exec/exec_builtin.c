@@ -44,6 +44,7 @@ static void	child_or_not(t_cmd_data data, char **args, t_buildin_func run_b)
 	code = get_app_data()->lastcode;
 	if (data.is_piped)
 	{
+		signal_handler(2);
 		close(get_app_data()->s_in);
 		close(get_app_data()->s_out);
 		lp_free_strtab(args, lp_strtab_size(args));

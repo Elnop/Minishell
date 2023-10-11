@@ -39,6 +39,7 @@ static pid_t	normal_exec(t_cmd_data data)
 	c_pid = fork();
 	if (!c_pid && !close(get_app_data()->s_in) && !close(get_app_data()->s_out))
 	{
+		signal_handler(1);
 		dup_fds(data.fd_in, data.fd_out);
 		(data.close_fd != -1 && close(data.close_fd));
 		cmd_args = array_to_strtab(data.args);
@@ -46,6 +47,7 @@ static pid_t	normal_exec(t_cmd_data data)
 		signal(SIGQUIT, SIG_DFL);
 		execve(cmd_path, cmd_args, cmd_env);
 	}
+	signal_handler(3);
 	return (free(cmd_path), c_pid);
 }
 
