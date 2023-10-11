@@ -22,3 +22,9 @@
     ...
     obj:/bin/*
 }
+{
+    leak binbinbin
+    Memcheck:Leak
+    ...
+    obj:/usr/lib/*
+}
