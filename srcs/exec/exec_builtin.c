@@ -44,13 +44,13 @@ static void	child_or_not(t_cmd_data data, char **args, t_buildin_func run_b)
 	code = get_app_data()->lastcode;
 	if (data.is_piped)
 	{
-		signal_handler(2);
 		close(get_app_data()->s_in);
 		close(get_app_data()->s_out);
 		lp_free_strtab(args, lp_strtab_size(args));
 		destroy_app();
 		exit(code);
 	}
+		
 }
 
 pid_t	exec_builtin(char *cmd_name, t_cmd_data data)
@@ -67,6 +67,7 @@ pid_t	exec_builtin(char *cmd_name, t_cmd_data data)
 	if (!args)
 		return (-1);
 	child_pid = -1;
+	//signal_handler(3);
 	if (data.is_piped)
 		child_pid = fork();
 	else

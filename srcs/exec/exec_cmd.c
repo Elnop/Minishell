@@ -36,6 +36,7 @@ static pid_t	normal_exec(t_cmd_data data)
 		get_app_data()->lastcode = 127;
 		return (-1);
 	}
+	signal_handler(3);
 	c_pid = fork();
 	if (!c_pid && !close(get_app_data()->s_in) && !close(get_app_data()->s_out))
 	{
@@ -45,7 +46,7 @@ static pid_t	normal_exec(t_cmd_data data)
 		cmd_args = array_to_strtab(data.args);
 		execve(cmd_path, cmd_args, array_to_strtab(get_app_data()->env));
 	}
-	return (signal_handler(3), free(cmd_path), c_pid);
+	return (free(cmd_path), c_pid);
 }
 
 pid_t	exec_cmd(t_cmd_data *pdata)

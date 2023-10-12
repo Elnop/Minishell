@@ -30,7 +30,6 @@ pid_t	pipe_heredoc_and_cmd(t_heredoc_data heredoc_data, t_cmd_data *p_cmd)
 	c_pid = fork();
 	if (!c_pid && !close(get_app_data()->s_out) && !close(get_app_data()->s_in))
 	{
-		signal_handler(3);
 		close(pipe_fds[0]);
 		(p_cmd->close_fd != -1 && close(p_cmd->close_fd));
 		(p_cmd->fd_out != -1 && close(p_cmd->fd_out));

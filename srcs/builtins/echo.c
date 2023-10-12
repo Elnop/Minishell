@@ -25,15 +25,19 @@ int	count_args(char **args)
 int	builtin_echo(char **args)
 {
 	int	i;
+	int	j;
 	int	n_arg;
 
 	i = 1;
+	j = -1;
 	n_arg = 0;
 	if (count_args(args) > 1)
 	{
-		while (args[i] && lp_strncmp(args[i], "-n", 2) == 0)
+		if (args[i][0] == '-')
 		{
-			n_arg = 1;
+			while (args[i][++j])
+				if (args[i][j] != 'n')
+					return (lp_putendl_fd("minishell: echo: invalid option", 2));
 			i++;
 		}
 		while (args[i])

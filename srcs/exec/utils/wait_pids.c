@@ -30,7 +30,14 @@ int	wait_pids(t_array *pids)
 		}
 		i++;
 	}
-	signal_handler(0);
+	if ((get_app_data()->lastcode != 130 && get_app_data()->sig_code == 130))
+	{
+		write(2, "\n", 1);
+	}
+	if ((get_app_data()->lastcode != 131 && get_app_data()->sig_code == 131))
+	{
+		write(2, "Quit (core doubpt)\n", 20);
+	}
 	if (array_size(pids) == 1 && get_app_data()->sig_code)
 	{
 		get_app_data()->lastcode = get_app_data()->sig_code;
