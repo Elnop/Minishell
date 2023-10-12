@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschecro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 20:56:17 by tschecro          #+#    #+#             */
-/*   Updated: 2023/10/09 20:56:20 by tschecro         ###   ########.fr       */
+/*   Updated: 2023/10/12 02:31:41 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	builtin_exit(char **args)
 	int		test;
 
 	ac = lp_strtab_size(args);
-	lp_putendl_fd("exit", STDERR_FILENO);
 	if (ac > 2)
 	{
 		lp_putstr_fd("minishell : exit : too many arguments\n", STDERR_FILENO);

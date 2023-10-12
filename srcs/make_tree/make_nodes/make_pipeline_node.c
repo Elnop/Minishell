@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 05:21:22 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/10 04:00:41 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/12 03:23:29 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ t_node	*subshell_cheat(char **words)
 	t_node	*cmd;
 
 	buff = array_new(3, sizeof(char *), copy_str, destroy_str);
-	tmp = lp_strdup(*words + 1);
+	if ((*words)[1] != ')')
+		tmp = lp_strdup(*words + 1);
+	else
+		tmp = lp_strdup("exit ");
 	tmp[lp_strlen(tmp) - 1] = 0;
 	if (!buff)
 		return (NULL);
@@ -58,6 +61,8 @@ t_node	*make_pipeline_node(char **words)
 	node->data = array_new(10, sizeof(t_node *), NULL, NULL);
 	while (words)
 	{
+		if (!*words)
+			return (array_free(node->data), free(node), NULL);
 		if (**words == '(')
 			cmd = subshell_cheat(words);
 		else

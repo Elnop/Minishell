@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:49:32 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/10 04:00:41 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/12 04:01:02 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <dirent.h>
+
 
 # include "../libs/liblp_c/liblp.h"
 # include "tree.h"
 # include "colors.h"
 
 # define SHELL_NAME "Minoushell"
+# define CNF "command not found"
 # define SPACERS " \t"
 # define EXPAND_SPECIAL_PARAMETERS "@*-#?!0"
 

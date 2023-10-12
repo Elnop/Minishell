@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:13:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/11 20:21:39 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/12 04:03:39 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static pid_t	normal_exec(t_cmd_data data)
 	pid_t	c_pid;
 	char	*cmd_path;
 	char	**cmd_args;
-	char	**cmd_env;
 
 	if (!*((char **)data.args)[0])
 		return (-1);
 	cmd_path = get_cmd_path(((char **)data.args)[0]);
-	if (!cmd_path && lp_dprintf(2, RED"%s: '%s': command not found\n"COLOR_OFF,
-			(char *)SHELL_NAME, ((char **)data.args)[0]))
+	if (cmd_path && *cmd_path == 0)
+		return (-1);
+	if (!cmd_path && lp_dprintf(2, "%s : "CNF"\n", ((char **)data.args)[0]))
 	{
 		get_app_data()->lastcode = 127;
 		return (-1);
@@ -39,16 +39,13 @@ static pid_t	normal_exec(t_cmd_data data)
 	c_pid = fork();
 	if (!c_pid && !close(get_app_data()->s_in) && !close(get_app_data()->s_out))
 	{
-		signal_handler(1);
-		dup_fds(data.fd_in, data.fd_out);
-		(data.close_fd != -1 && close(data.close_fd));
+		(signal_handler(1), dup_fds(data.fd_in, data.fd_out));
+		(void)(data.close_fd != -1 && !close(data.close_fd));
 		cmd_args = array_to_strtab(data.args);
-		cmd_env = array_to_strtab(get_app_data()->env);
 		signal(SIGQUIT, SIG_DFL);
-		execve(cmd_path, cmd_args, cmd_env);
+		execve(cmd_path, cmd_args, array_to_strtab(get_app_data()->env));
 	}
-	signal_handler(3);
-	return (free(cmd_path), c_pid);
+	return (signal_handler(3), free(cmd_path), c_pid);
 }
 
 pid_t	exec_cmd(t_cmd_data *pdata)
