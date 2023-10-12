@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:13:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/12 04:03:39 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/12 08:51:07 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ static pid_t	normal_exec(t_cmd_data data)
 	c_pid = fork();
 	if (!c_pid && !close(get_app_data()->s_in) && !close(get_app_data()->s_out))
 	{
-		(signal_handler(1), dup_fds(data.fd_in, data.fd_out));
+		signal_handler(1);
+		dup_fds(data.fd_in, data.fd_out);
 		(void)(data.close_fd != -1 && !close(data.close_fd));
 		cmd_args = array_to_strtab(data.args);
-		signal(SIGQUIT, SIG_DFL);
 		execve(cmd_path, cmd_args, array_to_strtab(get_app_data()->env));
 	}
 	return (signal_handler(3), free(cmd_path), c_pid);

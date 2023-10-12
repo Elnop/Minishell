@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:15:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/10 04:00:41 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/12 05:59:42 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_node	*make_heredoc_node(char **words)
 	i = 0;
 	while (words[i] && !is_operator(words[i]))
 		i++;
-	if (!lp_strncmp(*words, "<<", 3)
+	if (!lp_strncmp(words[i], "<<", 3)
 		&& (!words[i + 1] || is_operator(words[i + 1])))
 		return (NULL);
 	p_node = malloc(sizeof(t_node));
