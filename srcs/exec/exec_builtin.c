@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 21:51:44 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/09 20:50:39 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:15:07 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	child_or_not(t_cmd_data data, char **args, t_buildin_func run_b)
 		destroy_app();
 		exit(code);
 	}
-		
 }
 
 pid_t	exec_builtin(char *cmd_name, t_cmd_data data)
@@ -67,7 +66,6 @@ pid_t	exec_builtin(char *cmd_name, t_cmd_data data)
 	if (!args)
 		return (-1);
 	child_pid = -1;
-	//signal_handler(3);
 	if (data.is_piped)
 		child_pid = fork();
 	else

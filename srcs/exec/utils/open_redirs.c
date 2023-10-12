@@ -6,12 +6,11 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 02:01:58 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/11 23:04:43 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:11:53 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
-#include <errno.h>
 
 static bool	check_print_errors(char *fn)
 {
@@ -64,7 +63,6 @@ bool	open_and_replace(t_redir_data redir, t_node *p_cmd)
 		(void)(!check_print_errors(redir.file_name)
 			&& file_fd != -1 && (close(file_fd), 1));
 		return (true);
-
 	}
 	if (check_print_errors(redir.file_name))
 		return (false);

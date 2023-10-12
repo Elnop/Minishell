@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 14:07:58 by elnop             #+#    #+#             */
-/*   Updated: 2023/10/11 22:56:00 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:11:59 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static bool	last_cmd(t_node *node, int pipe_fds[2])
 		((t_cmd_data *)node->data)->fd_in = pipe_fds[0];
 	else
 		close(pipe_fds[0]);
-
 	return (true);
 }
 

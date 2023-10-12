@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 01:08:37 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/12 03:54:05 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:11:18 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ static char	*test_env_paths(char *name)
 
 char	*get_cmd_path(char *name)
 {
-	DIR *fd;
+	DIR	*fd;
+
 	if (!name || !*name)
 		return (NULL);
 	fd = opendir(name);

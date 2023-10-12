@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschecro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 20:56:42 by tschecro          #+#    #+#             */
-/*   Updated: 2023/10/10 03:31:09 by tschecro         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:15:40 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	builtin_echo(char **args)
 		{
 			while (args[i][++j])
 				if (args[i][j] != 'n')
-					return (lp_putendl_fd("minishell: echo: invalid option", 2));
+					return (lp_putendl_fd("echo: invalid option", 2));
 			i++;
 		}
 		while (args[i])

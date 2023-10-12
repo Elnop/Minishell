@@ -6,11 +6,24 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 03:20:53 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/07 21:48:23 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:14:11 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+void	check_sigs(t_array	pids)
+{
+	if ((get_app_data()->lastcode != 130 && get_app_data()->sig_code == 130))
+		write(2, "\n", 1);
+	if ((get_app_data()->lastcode != 131 && get_app_data()->sig_code == 131))
+		write(2, "Quit (core doubpt)\n", 20);
+	if (array_size(pids) == 1 && get_app_data()->sig_code)
+	{
+		get_app_data()->lastcode = get_app_data()->sig_code;
+		get_app_data()->sig_code = 0;
+	}
+}
 
 int	wait_pids(t_array *pids)
 {
@@ -30,18 +43,6 @@ int	wait_pids(t_array *pids)
 		}
 		i++;
 	}
-	if ((get_app_data()->lastcode != 130 && get_app_data()->sig_code == 130))
-	{
-		write(2, "\n", 1);
-	}
-	if ((get_app_data()->lastcode != 131 && get_app_data()->sig_code == 131))
-	{
-		write(2, "Quit (core doubpt)\n", 20);
-	}
-	if (array_size(pids) == 1 && get_app_data()->sig_code)
-	{
-		get_app_data()->lastcode = get_app_data()->sig_code;
-		get_app_data()->sig_code = 0;
-	}
+	check_sigs(pids);
 	return (get_app_data()->lastcode);
 }

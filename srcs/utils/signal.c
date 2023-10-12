@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 20:57:24 by tschecro          #+#    #+#             */
-/*   Updated: 2023/10/12 10:49:41 by tschecro         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:14:44 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ void	signal_handler(int mode)
 	}
 	else if (mode == 1)
 	{
-		signal(SIGINT,  SIG_DFL);
-		signal(SIGQUIT,  SIG_DFL);
-
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 	}
 	else if (mode == 2)
 	{
