@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 20:56:42 by tschecro          #+#    #+#             */
-/*   Updated: 2023/10/13 17:19:40 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/13 17:27:47 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int	builtin_echo(char **args)
 	{
 		while (args[i] && lp_strncmp(args[i], "-n", 2) == 0)
 		{
-			if (i == 1 && !check_n_option(args, &i))
-				return (lp_putendl_fd("echo: invalid option", 2));
 			if (!check_n_option(args, &i))
 				break ;
 			n_arg = 1;
