@@ -21,5 +21,5 @@ make
 ## Valgrind flags
 
 ```
-valgrind --suppressions=./valg.supp --leak-check=full --show-leak-kinds=all --track-fds=yes --trace-children=yes  ./minishell
+valgrind --suppressions=./valg.supp --leak-check=full --show-leak-kinds=all --track-fds=yes --trace-children=yes -q  ./minishell
 ```

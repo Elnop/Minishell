@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 20:57:24 by tschecro          #+#    #+#             */
-/*   Updated: 2023/10/12 14:14:44 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/13 14:43:52 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	handler_heredoc(int sig)
 	{
 		get_app_data()->sig_code = 130;
 		get_app_data()->here_sigint = true;
+		write(1, "\n", 1);
 		close(0);
 		close(1);
 		rl_on_new_line();

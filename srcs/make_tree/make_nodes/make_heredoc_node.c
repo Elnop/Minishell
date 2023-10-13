@@ -6,7 +6,7 @@
 /*   By: lperroti <lperroti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:15:47 by lperroti          #+#    #+#             */
-/*   Updated: 2023/10/12 05:59:42 by lperroti         ###   ########.fr       */
+/*   Updated: 2023/10/13 14:40:13 by lperroti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_heredoc_buffer(char *limiter, bool need_ex)
 	if ((signal_handler(2), 0) || !buff || !lp_strcat(&limiter, "\n"))
 		return (free(buff), NULL);
 	line = readline("document-ici>");
-	if (!lp_strcat(&line, "\n"))
+	if (line && !lp_strcat(&line, "\n"))
 		return (free(buff), free(line), free(limiter), NULL);
 	while (buff && line && lp_strncmp(line, limiter, lp_strlen(line)))
 	{
