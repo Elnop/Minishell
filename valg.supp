@@ -1,23 +1,23 @@
 {
-    leak readline
+    readline
     Memcheck:Leak
     ...
     fun:readline
 }
 {
-    leak add_history
-   Memcheck:Leak
+    add_history
+    Memcheck:Leak
     ...
     fun:add_history
 }
 {
-    leak binbin
+    root bin
     Memcheck:Leak
     ...
     obj:/bin/*
 }
 {
-    leak binbinbin
+    usr lib
     Memcheck:Leak
     ...
     obj:/usr/lib/*
